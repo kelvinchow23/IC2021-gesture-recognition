@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'greenfieldsblueberry'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_14e9ed7937f847739a3bffbb33af0ca0 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0de4be41196e421aac6f12b2d132eea6 }}
         package: .
