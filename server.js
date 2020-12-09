@@ -18,7 +18,7 @@ app.use('/stats', statsRoute);
 
 //ROUTES
 app.get('/', (req, res) => {
-    res.sendFile('index.html', {root: __dirname + '/client/build/static/'});
+    res.sendFile('index.html', {root: __dirname + '/client/build/'});
 });
 
 const PORT = process.env.PORT || 3000;
