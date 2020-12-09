@@ -45,7 +45,7 @@ import axios from 'axios';
              description: this.state.description
          }
 
-         axios.post('http://localhost:5000/training', addUser)
+         axios.post('http://localhost:3000/training', addUser)
             .then(res => console.log(res.data));
         
         this.setState({

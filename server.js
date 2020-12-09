@@ -10,6 +10,7 @@ const statsRoute = require('./routes/stats');
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static('./client/build/'));
 
 
 app.use('/training', trainingRoute);
@@ -17,10 +18,10 @@ app.use('/stats', statsRoute);
 
 //ROUTES
 app.get('/', (req, res) => {
-    res.send("Hello World!!!");
+    res.sendFile('index.html', {root: __dirname + '/client/build/static/'});
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 mongoose.connect(
     process.env.DB_CONNECTION, { useNewUrlParser: true, useCreateIndex: true}, () =>
