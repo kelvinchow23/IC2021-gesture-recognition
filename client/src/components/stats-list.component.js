@@ -6,13 +6,13 @@ import axios from 'axios';
          super(props);
 
          this.onChangeUsername = this.onChangeUsername.bind(this);
-         this.onChangeUserID = this.onChangeUserID.bind(this);
+         this.onChangeScore = this.onChangeScore.bind(this);
          this.onChangeDescription = this.onChangeDescription.bind(this);
          this.onSubmit = this.onSubmit.bind(this);
 
          this.state ={
              user: '',
-             userID: 0,
+             score: 0,
              description: '',
              userList: [],
          }
@@ -24,9 +24,9 @@ import axios from 'axios';
          });
      }
 
-     onChangeUserID(e) {
+     onChangeScore(e) {
         this.setState({
-            userID: e.target.value,
+            score: e.target.value,
         });
     }
 
@@ -41,16 +41,19 @@ import axios from 'axios';
 
          const addUser = {
              user: this.state.user,
-             userID: this.state.userID,
+             score: this.state.score,
              description: this.state.description
          }
 
-         axios.post('http://localhost:3000/training', addUser)
+         console.log(window.location.href);
+         console.log(window.location.hostname);
+
+         axios.post(window.location.href, addUser)
             .then(res => console.log(res.data));
         
         this.setState({
             user: '',
-            userID: 0,
+            score: 0,
             description: ''
         })
 
@@ -72,12 +75,12 @@ import axios from 'axios';
                             />
                     </div>
                     <div className='form-group'>
-                        <label>User ID: </label>
+                        <label>Score: </label>
                         <input type="number"
                             required
                             className="form-control"
-                            value={this.state.userID}
-                            onChange={this.onChangeUserID}
+                            value={this.state.score}
+                            onChange={this.onChangeScore}
                             />
                     </div>
                     <div className='form-group'>
