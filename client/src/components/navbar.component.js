@@ -9,6 +9,9 @@ import React, {Component} from 'react';
                 <div className='collapse navbar-collapse'>
                 <ul className = "navbar-nav mr-auto">
                     <li className="navbar-item">
+                        <Link to ='/instructions' className="nav-link">Getting Started</Link>
+                    </li>
+                    <li className="navbar-item">
                         <Link to ='/training' className="nav-link">Training</Link>
                     </li>
                     <li className="navbar-item">
