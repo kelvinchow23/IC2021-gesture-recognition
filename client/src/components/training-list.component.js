@@ -8,6 +8,8 @@ import TrainingMain from './training-main.component';
         this.state = {
             showTrainingSettings: true,
             showTrainingMain: false,
+            trainingType: 'alphabet',
+            trainingNumber: '1',
         }
     }
 
@@ -15,27 +17,38 @@ import TrainingMain from './training-main.component';
         switch(name){
             case "showTrainingSettings":
                 this.setState({ showTrainingSettings: !this.state.showTrainingSettings});
-                console.log(name + this.state.howTrainingSettings);
                 break;
             case "showTrainingMain":
                 this.setState({ showTrainingMain: !this.state.showTrainingMain});
-                console.log(name + this.state.showTrainingMain);
                 break;
             default:
                 break;
         }
+    }
+
+    updateTrainingType(type) {
+        this.setState({ trainingType: type});
+    }
+
+    updateTrainingNumber(num) {
+        this.setState({ trainingNumber: num});
     }
     
     startTraining() {
         this.toggleComponent("showTrainingMain");
         this.toggleComponent("showTrainingSettings");
     } 
+
     render() {
         const {showTrainingMain, showTrainingSettings} = this.state;
         return (
             <div>
-                {showTrainingSettings && <TrainingSettings startTraining = {this.startTraining.bind(this)}/>}
-                {showTrainingMain && <TrainingMain/>}
+                {showTrainingSettings && <TrainingSettings 
+                startTraining = {this.startTraining.bind(this)}
+                onSelectTypeChange = {this.updateTrainingType.bind(this)}
+                onSelectNumberChange = {this.updateTrainingNumber.bind(this)} 
+                />}
+                {showTrainingMain && <TrainingMain parentData = {this.state}/>}
             </div>
            
         )

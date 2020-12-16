@@ -1,0 +1,24 @@
+.training-instructions-1 {
+    font-size: 1.5rem;
+}
+.training-instructions-2 {
+    color:darkblue;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.next-letter {
+    text-align: center;
+    font-size: 25rem;
+    font-weight: 750;
+}
+
+.counter-text {
+    text-align: center;
+}
+
+textarea {
+    float: right;
+    opacity: 0;
+}
