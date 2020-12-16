@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 
  export default class TrainingMain extends Component {
@@ -11,7 +12,10 @@ import KeyboardEventHandler from 'react-keyboard-event-handler';
             logdata: '',
             counter: -1,
             instructionText1: 'Before starting training, make sure your Bluetooth device is paired and connected to your web application.',
-            instructionText2: 'Please hit the button on the device to check if your device is connected.'
+            instructionText2: 'Please hit the button on the device to check if your device is connected.',
+            showProgressBar: false,
+            progress: 10,
+            showInstructionText1: true
         }
     }
 
@@ -23,7 +27,8 @@ import KeyboardEventHandler from 'react-keyboard-event-handler';
             });
             this.nameInput.focus();
             this.setState({
-                instructionText1:''
+                instructionText1:'',
+                instructionText2: 'NEXT LETTER:'
             });
             //Turn on green light, start countdown timer,
         } else {        // Test that the device can communicate with the web app.  On first load, setup stuff.
@@ -43,8 +48,9 @@ import KeyboardEventHandler from 'react-keyboard-event-handler';
             }
             this.setState({
                 counter: this.state.letterlist.length,
-                instructionText1: 'Device Connected!!! Ready to begin training.',
-                instructionText2: 'NEXT LETTER:'
+                showProgressBar: true,
+                showInstructionText1: false,
+                instructionText2: 'Device Connected! Ready to start.'
             });
         }
         this.setState({letter: this.state.letterlist[this.state.counter-1]});
@@ -73,30 +79,35 @@ import KeyboardEventHandler from 'react-keyboard-event-handler';
     render() {
         return (     
             <div>
-                <div className='training-instructions-1'>
-                    {this.state.instructionText1}
-                    <KeyboardEventHandler 
+                {this.state.showInstructionText1 && 
+                    <div className='training-instructions-1'>
+                    {this.state.instructionText1}</div>
+                }
+                {this.state.showProgressBar && 
+                <div className='row'>
+                    <ProgressBar className='col-10' now={this.state.progress} />
+                    <div className='align-self-center col-2'>SETS LEFT: {this.state.counter}</div>
+                </div>
+                }
+                <br/>
+                <div className='training-instructions-2'>
+                    {this.state.instructionText2}                
+                </div>
+                <KeyboardEventHandler 
+                    handleKeys= {['ctrl']} 
+                    onKeyEvent={(key) => this.startLog(key) }/>
+                <div className='next-letter col-6 offset-3'>{this.state.letter}</div> 
+
+                <KeyboardEventHandler 
                         handleKeys= {['esc']}
                         onKeyEvent={(key) => this.sendLog(key)} >
                             <textarea rows='1' cols='1'
                             type='text' value = {this.state.logdata}
                             onChange = {this.logging.bind(this)}
                             ref={(input) => { this.nameInput = input; }}  />
-                    </KeyboardEventHandler> 
-                </div>
-                <br/> <br/>
-                <div className='training-instructions-2'>
-                {this.state.instructionText2}
-                </div>
-                <KeyboardEventHandler 
-                    handleKeys= {['ctrl']} 
-                    onKeyEvent={(key) => this.startLog(key) }/>
-                <div className='row'>
-                    <div className='next-letter col-6 offset-3'>{this.state.letter}</div> 
-                    <div className='align-self-center col-2 offset-1'>SETS LEFT</div> 
-                </div>
-                             
+                    </KeyboardEventHandler>                             
             </div>
         )
+        
     }
  }
