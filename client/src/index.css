@@ -20,5 +20,13 @@
 
 textarea {
     float: right;
-    opacity: 0;
+    opacity: 100;
+}
+.green-text{
+    color: green;
+}
+
+.my-progress-bar {
+    padding-right: 0px;
+    padding-left: 0px;
 }
