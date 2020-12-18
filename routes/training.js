@@ -18,9 +18,10 @@ router.get('/getall', async (req, res) => {
 
 router.post("/", async (req, res) => {
     const training = new Training({
-        user: req.body.user,
-        userID: req.body.userID,
-        description: req.body.description
+        name: req.body.name,
+        letter: req.body.letter,
+        datetime: req.body.datetime,
+        data: req.body.data
     });
     try {
         const savedTraining = await training.save();

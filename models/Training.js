@@ -1,15 +1,25 @@
 const mongoose = require('mongoose');
 
 const TrainingSchema = mongoose.Schema({
-    user: {
+    name: {
         type: String,
         required: true
     },
-    userID: {
-        type: Number,
+    letter: {
+        type: String,
         required: true
     },
-    description: String
+    
+    datetime: {
+        type: String,
+        required: true
+    },
+    
+    data: {
+        type: String,
+        required: true
+    }
+    
 });
 
 module.exports = mongoose.model("Training", TrainingSchema);

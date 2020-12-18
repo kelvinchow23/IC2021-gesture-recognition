@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import Button from 'react-bootstrap/Button'
 
 
+let currentdate = new Date();
  export default class TrainingMain extends Component {
+
     constructor (props) {
         super(props);
         this.state = {
@@ -16,7 +20,9 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
             showProgressBar: false,
             progress: 0,
             showInstructionText1: true,
+            showFinishedScreen: false,
             textColour: ''
+
         }
     }    
 
@@ -27,34 +33,44 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
     }
 
     sendLog(key) {
-        console.log(this.state.logdata);
         this.nameInput.blur();
-        //TODO send http request to log data
+        //TODO send http request to log data 
+
+        const addLog = {
+            name: 'test',
+            letter: this.state.letter,
+            datetime: (String(currentdate.getMonth() + 1) + '/'
+            + (currentdate.getDate()) + '/' + (currentdate.getFullYear()) + '@'
+            + (currentdate.getHours()) + ':' +  (currentdate.getMinutes()) + ':'
+            + (currentdate.getSeconds())),
+            data: this.state.logdata
+        }
+        axios.post(window.location.href, addLog)
+           .then(res => console.log(res.data));    
         this.setState({
             logdata: ''
-        });   
+        }); 
         this.trainingReady();       
     }
 
     startTracing(key) {
         //Display next letter
-        if (this.state.counter !== this.state.letterlist.length) {
-            if (key === 'ctrl') {
-                this.setState({
-                    instructionText2: 'GO!',
-                    textColour: 'green-text'
-                });    
-            } else if(key === 'shift') {
-                this.startLogging();
-            }                   
-            //Turn on green light, start countdown timer,
-        } else {        // Test that the device can communicate with the web app.  On first load, setup stuff.
-            if (key ==='ctrl'){   // First button press
+        if (this.state.counter === this.state.letterlist.length) {
+            if (key ==='shift'){   // First button press
                 this.initializeTraining();
             } else if (key === 'esc'){  // key = esc, first button release
                 this.trainingReady();
             }
-        
+            
+        } else if (this.state.counter !== -1) {      // Test that the device can communicate with the web app.  On first load, setup stuff.
+            if (key === 'shift') {
+                this.setState({
+                    instructionText2: 'GO!',
+                    textColour: 'green-text'
+                });    
+            } else if(key === 'ctrl') {
+                this.startLogging();
+            }                   
         }
         console.log(this.state.counter);
     }
@@ -74,15 +90,30 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
     }
 
     trainingReady() {
+        if (this.state.counter !== 0) {
+            this.setState({
+                showProgressBar: true,
+                showInstructionText1: false,
+                instructionText1: '',
+                instructionText2: 'NEXT LETTER:',
+                letter: this.state.letterlist[this.state.counter-1],
+                counter: this.state.counter -1,
+                progress: 100*(this.state.letterlist.length-this.state.counter)/this.state.letterlist.length
+            });  
+        } else {
+            this.endTrainingSession();
+        }        
+    }
+
+    endTrainingSession() {
+
         this.setState({
-            showProgressBar: true,
-            showInstructionText1: false,
-            instructionText1: '',
-            instructionText2: 'NEXT LETTER:',
-            letter: this.state.letterlist[this.state.counter-1],
-            counter: this.state.counter -1,
-            progress: 100*(this.state.letterlist.length-this.state.counter)/this.state.letterlist.length
-        });  
+            showProgressBar: false,
+            instructionText2: 'FINISHED!!!',
+            letter: '',
+            showFinishedScreen: true,
+            counter: this.state.counter -1
+        })
     }
 
     componentDidMount() {  
@@ -103,7 +134,6 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
             letterlist: arr,
             counter: arr.length
         });
-        console.log(this.state.counter);
     }
 
     render() {
@@ -123,6 +153,16 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
                 <div className='training-instructions-2'>
                     {this.state.instructionText2}                
                 </div>
+
+                {this.state.showFinishedScreen &&
+                <div className='row mt-5'>                    
+                    <Button className ='my-big-button' variant='primary'>REPEAT TRAINING?</Button>
+                    <Button className ='my-big-button my-button-gutter' variant='secondary'>VIEW STATS</Button>
+                    <Button className ='my-big-button' variant='danger'>LOGOUT</Button>
+                </div>}
+
+
+
                 <KeyboardEventHandler 
                     handleKeys= {['ctrl', 'esc', 'shift']} 
                     onKeyEvent={(key) => this.startTracing(key) }/>

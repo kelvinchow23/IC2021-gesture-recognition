@@ -30,3 +30,16 @@ textarea {
     padding-right: 0px;
     padding-left: 0px;
 }
+
+.my-big-button {
+    padding: 1.5rem 0rem;
+    font-size: 2rem;
+    border-radius: 1rem;
+    flex: 0 0 33.333333%;
+    max-width: 32%;
+}
+
+.my-button-gutter {
+    margin-right: 2%;
+    margin-left: 2%;
+}
