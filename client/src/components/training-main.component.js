@@ -145,7 +145,7 @@ let currentdate = new Date();
                 }
                 {this.state.showProgressBar && 
                 <div className='row'>
-                    <ProgressBar className='col-10 my-progress-bar' now={this.state.progress} />
+                    <ProgressBar className='col-9 offset-1 my-progress-bar' now={this.state.progress} />
                     <div className='align-self-center col-2'>SETS LEFT: {this.state.counter+1}</div>
                 </div>
                 }
@@ -171,7 +171,7 @@ let currentdate = new Date();
                 <KeyboardEventHandler 
                         handleKeys= {['esc']}
                         onKeyEvent={(key) => this.sendLog(key)} >
-                            <textarea rows='1' cols='1'
+                            <textarea rows='1' cols='1' className='ghost-textbox'
                             type='text' value = {this.state.logdata}
                             onChange = {this.logging.bind(this)}
                             ref={(input) => { this.nameInput = input; }}  />

@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./components/navbar.component";
+import MyNavbar from "./components/my-navbar.component";
 import DashboardList from "./components/dashboard-list.component";
 import TrainingList from "./components/training-list.component";
 import StatsList from "./components/stats-list.component";
@@ -14,7 +14,7 @@ function App() {
     return (
         <div className = "container">
         <Router>
-            <Navbar />
+            <MyNavbar />
             <br/>
             <Route path ="/" exact component={DashboardList} />
             <Route path ="/instructions" exact component = {InstructionsList} />

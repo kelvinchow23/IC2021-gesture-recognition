@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Button from 'react-bootstrap/button';
 
  export default class TrainingSettings extends Component {
     constructor (props) {
@@ -26,7 +27,7 @@ import React, {Component} from 'react';
                 <p>Layout: Start button, information, current settings: go to settings to change</p>
                 <p>Current configurations: Gesture actions: Trace letters.  Time limit. Training sets.</p>
                 <label>
-                Training Set 
+                Training Set:
                 <select value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
                     <option  value='alphabet'>Alphabet (26)</option>
                     <option value='alphanumeric'>Alphanumeric (36)</option>
@@ -42,7 +43,7 @@ import React, {Component} from 'react';
                 </select>
                 </label>                
                 <div>
-                    <button className='btn-primary' onClick={this.props.startTraining}>Start training</button>
+                    <Button className='btn-primary' onClick={this.props.startTraining}>Start training</Button>
                 </div>
                 </div>
             </div>
