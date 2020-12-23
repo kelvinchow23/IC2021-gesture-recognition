@@ -4,7 +4,7 @@ import React, {Component} from 'react';
     render() {
         return (
             <div>
-                <p>You are on homepage dashboard</p>
+                <p>Hello! Welcome to flourish portal.  Please login to start.</p>
             </div>
         )
     }

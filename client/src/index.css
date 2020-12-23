@@ -26,6 +26,10 @@
     color: green;
 }
 
+.red-text {
+    color: red;
+}
+
 .my-progress-bar {
     padding-right: 0px;
     padding-left: 0px;
@@ -47,4 +51,9 @@
 .my-navbar {
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+}
+
+.my-nav-separator {
+    color: rgba(255,255,255,.5);
+    padding: 0.5rem 0rem;
 }

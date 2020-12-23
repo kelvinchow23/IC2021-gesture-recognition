@@ -5,12 +5,7 @@ const Stats = require('../models/Stats');
 
 //ROUTES
 router.get('/', (req, res) => {
-    res.send("on stats page");
-});
-
-router.get('/other', (req, res) => {
-    res.send("other stats stuff");
-});
+    res.sendFile('index.html', {root: __dirname + '/client/build/'})});
 
 router.post("/", async (req, res) => {
     const stats = new Stats({

@@ -3,8 +3,13 @@ const router = express.Router();
 const Training = require('../models/Training');
 
 //ROUTES
-router.get('/', (req, res) => {
-    res.send("on training page");
+router.get('/', async (req, res) => {
+    try {
+        const trainings = await Training.find();
+        res.json(trainings);
+    } catch (err) {
+        res.json({message:err});
+    }
 });
 
 router.get('/getall', async (req, res) => {
