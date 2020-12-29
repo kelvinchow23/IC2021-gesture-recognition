@@ -1,24 +1,31 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/button';
+import {connect} from 'react-redux';
+import {updateTrainingSettings} from '../actions';
 
- export default class TrainingSettings extends Component {
+ class TrainingSettings extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            trainType: '',
-            trainNum: ''
+            trainType: 'alphabet',
+            trainNum: '1'
         }
     }
 
     onTypeChange(e) {
         this.setState({trainType: e.target.value});
-        this.props.onSelectTypeChange(e.target.value);
+        //this.props.onSelectTypeChange(e.target.value);
     }
     
     onNumberChange(e) {
         this.setState({trainNum: e.target.value});
-        this.props.onSelectNumberChange(e.target.value);
+        //this.props.onSelectNumberChange(e.target.value);
     }
+
+    startTraining() {
+        this.props.updateTrainingSettings(this.state.trainType, this.state.trainNum, true, false);
+    }
+
     render() {
         return (
             <div>
@@ -41,12 +48,22 @@ import Button from 'react-bootstrap/button';
                     <option value='2'>2</option>
                     <option value='3'>3</option>
                 </select>
-                </label>                
+                </label>            
                 <div>
-                    <Button className='btn-primary' onClick={this.props.startTraining}>Start training</Button>
+                 {/* <Button className='btn-primary' onClick={this.props.startTraining}>Start training</Button>
+                 */}
+                 <Button className='btn-primary' onClick={this.startTraining.bind(this)}>Start training</Button>
                 </div>
                 </div>
             </div>
         )
     }
+ };
+
+ const mapDispatchToProps = () => {
+    return {
+        updateTrainingSettings,
+    }
  }
+
+ export default connect(null, mapDispatchToProps())(TrainingSettings)

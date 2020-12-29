@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
-import ProgressBar from 'react-bootstrap/ProgressBar'
-import Button from 'react-bootstrap/Button'
-
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import Button from 'react-bootstrap/Button';
+import {connect} from 'react-redux';
+import {updateTrainingSettings} from '../actions';
 
 let currentdate = new Date();
- export default class TrainingMain extends Component {
+class TrainingMain extends Component {
 
     constructor (props) {
         super(props);
@@ -45,11 +46,14 @@ let currentdate = new Date();
             + (currentdate.getSeconds())),
             data: this.state.logdata
         }
+        console.log(addLog);
+        /*
         axios.post(window.location.href, addLog)
            .then(res => console.log(res.data));    
         this.setState({
             logdata: ''
         }); 
+        */
         this.trainingReady();       
     }
 
@@ -117,8 +121,8 @@ let currentdate = new Date();
     }
 
     componentDidMount() {  
-        let trainType = this.props.parentData.trainingType;
-        let trainNum = parseInt(this.props.parentData.trainingNumber);  
+        let trainType = this.props.someData.trainingType;
+        let trainNum = parseInt(this.props.someData.trainingNumber);  
         let arr =[]      
         if (trainType === 'alphabet') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.repeat(trainNum).split('')
@@ -134,6 +138,12 @@ let currentdate = new Date();
             letterlist: arr,
             counter: arr.length
         });
+    }
+
+    componentWillUnmount () {
+        this.props.updateTrainingSettings(this.props.someData.trainingType, 
+            this.props.someData.trainingNumber,
+            false, true);
     }
 
     render() {
@@ -181,3 +191,18 @@ let currentdate = new Date();
         
     }
  }
+
+ const mapStateToProps = (state) => {
+    return {
+        someData: state.trainSettings
+    }
+}
+
+const mapDispatchToProps = () => {
+    return {
+        updateTrainingSettings,
+    }
+ }
+
+
+export default connect(mapStateToProps, mapDispatchToProps())(TrainingMain)

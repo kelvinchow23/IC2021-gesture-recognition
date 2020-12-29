@@ -3,8 +3,11 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import {connect} from 'react-redux';
+import {updateUserData} from '../actions';
 
- export default class LoginList extends Component {
+
+ class LoginList extends Component {
      constructor(props) {
          super(props);
          this.state = {
@@ -21,7 +24,8 @@ import Button from 'react-bootstrap/Button';
         axios.post(window.location.origin + '/profile/validatelogin', newLogin)
            .then(res => {
                console.log(res.data.username);
-               console.log(res.data.name);                            
+               console.log(res.data.name);    
+               this.props.updateUserData(res.data.name, res.data.username);                        
             }); 
     }
 
@@ -66,3 +70,11 @@ import Button from 'react-bootstrap/Button';
         )
     }
  }
+
+ const mapDispatchToProps = () => {
+    return {
+        updateUserData,
+    }
+ }
+
+ export default connect(null, mapDispatchToProps())(LoginList)
