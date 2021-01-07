@@ -33,6 +33,7 @@ import {updateTrainingSettings} from '../actions';
                 <h3>Training Configuration</h3>
                 <p>Layout: Start button, information, current settings: go to settings to change</p>
                 <p>Current configurations: Gesture actions: Trace letters.  Time limit. Training sets.</p>
+                <p>Pop-up warning message for selecting remote device on next page.</p>
                 <label>
                 Training Set:
                 <select value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
@@ -48,7 +49,7 @@ import {updateTrainingSettings} from '../actions';
                     <option value='2'>2</option>
                     <option value='3'>3</option>
                 </select>
-                </label>            
+                </label> 
                 <div>
                  {/* <Button className='btn-primary' onClick={this.props.startTraining}>Start training</Button>
                  */}
@@ -58,7 +59,7 @@ import {updateTrainingSettings} from '../actions';
             </div>
         )
     }
- };
+ }
 
  const mapDispatchToProps = () => {
     return {

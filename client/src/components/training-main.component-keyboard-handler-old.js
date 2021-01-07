@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 //import axios from 'axios';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux';
 import {updateTrainingSettings} from '../actions';
 
 let currentdate = new Date();
-let utf8decoder = new TextDecoder();
 class TrainingMain extends Component {
 
     constructor (props) {
@@ -22,11 +22,21 @@ class TrainingMain extends Component {
             progress: 0,
             showInstructionText1: true,
             showFinishedScreen: false,
-            textColour: '',
+            textColour: ''
+
         }
     }    
 
-    sendLog() {
+    logging(e) {
+        this.setState({
+            logdata: e.target.value
+        });
+    }
+
+    sendLog(key) {
+        this.nameInput.blur();
+        //TODO send http request to log data 
+
         const addLog = {
             name: 'test',
             letter: this.state.letter,
@@ -34,10 +44,9 @@ class TrainingMain extends Component {
             + (currentdate.getDate()) + '/' + (currentdate.getFullYear()) + '@'
             + (currentdate.getHours()) + ':' +  (currentdate.getMinutes()) + ':'
             + (currentdate.getSeconds())),
-            data: this.state.logdata,
+            data: this.state.logdata
         }
         console.log(addLog);
-        this.setState({textColour: ''});
         /*
         axios.post(window.location.href, addLog)
            .then(res => console.log(res.data));    
@@ -48,31 +57,37 @@ class TrainingMain extends Component {
         this.trainingReady();       
     }
 
-    async startTracing(key) {
+    startTracing(key) {
         //Display next letter
         if (this.state.counter === this.state.letterlist.length) {
-            if (key.includes('A')){   // First button press
+            if (key ==='shift'){   // First button press
                 this.initializeTraining();
-            } else if (key.includes('Z')){  // key = esc, first button release
+            } else if (key === 'esc'){  // key = esc, first button release
                 this.trainingReady();
             }
             
         } else if (this.state.counter !== -1) {      // Test that the device can communicate with the web app.  On first load, setup stuff.
-            if (key.includes('A')) {
+            if (key === 'shift') {
                 this.setState({
                     instructionText2: 'GO!',
                     textColour: 'green-text'
                 });    
-            } else if(key.includes('Z')) {
-                this.sendLog();
-            } else {
-                this.setState({logdata: this.state.logdata + key});
-            }                  
+            } else if(key === 'ctrl') {
+                this.startLogging();
+            }                   
         }
+        console.log(this.state.counter);
+    }
+
+    startLogging() {
+        this.nameInput.focus();
+        this.setState({
+            textColour: '',
+            instructionText2: 'Logging data...'
+        });
     }
 
     initializeTraining() {
-        console.log('hi');
         this.setState({
             instructionText2: 'Device Connected! Please wait a moment...',
         });
@@ -87,8 +102,7 @@ class TrainingMain extends Component {
                 instructionText2: 'NEXT LETTER:',
                 letter: this.state.letterlist[this.state.counter-1],
                 counter: this.state.counter -1,
-                progress: 100*(this.state.letterlist.length-this.state.counter)/this.state.letterlist.length,
-                logdata: '',
+                progress: 100*(this.state.letterlist.length-this.state.counter)/this.state.letterlist.length
             });  
         } else {
             this.endTrainingSession();
@@ -106,7 +120,7 @@ class TrainingMain extends Component {
         })
     }
 
-    async componentDidMount() {  
+    componentDidMount() {  
         let trainType = this.props.someData.trainingType;
         let trainNum = parseInt(this.props.someData.trainingNumber);  
         let arr =[]      
@@ -124,22 +138,6 @@ class TrainingMain extends Component {
             letterlist: arr,
             counter: arr.length
         });
-
-        if ("serial" in navigator) {
-            const port = await navigator.serial.requestPort();
-            await port.open({baudRate : 750000}); 
-            const reader = port.readable.getReader();
-            while (true) {
-                const { value, done } = await reader.read();
-                if (done) {
-                  reader.releaseLock();
-                  break;
-                }
-                this.startTracing(utf8decoder.decode(value));
-            }  
-          } else {
-              alert('WebSerial API not supported. Please use Google Chrome browser and read setup instructions on the page. Sorry.');
-          }
     }
 
     componentWillUnmount () {
@@ -172,7 +170,22 @@ class TrainingMain extends Component {
                     <Button className ='my-big-button my-button-gutter' variant='secondary'>VIEW STATS</Button>
                     <Button className ='my-big-button' variant='danger'>LOGOUT</Button>
                 </div>}
-                <div className={`next-letter col-6 offset-3 ${this.state.textColour}`}>{this.state.letter}</div>                            
+
+
+
+                <KeyboardEventHandler 
+                    handleKeys= {['ctrl', 'esc', 'shift']} 
+                    onKeyEvent={(key) => this.startTracing(key) }/>
+                <div className={`next-letter col-6 offset-3 ${this.state.textColour}`}>{this.state.letter}</div> 
+
+                <KeyboardEventHandler 
+                        handleKeys= {['esc']}
+                        onKeyEvent={(key) => this.sendLog(key)} >
+                            <textarea rows='1' cols='1' className='ghost-textbox'
+                            type='text' value = {this.state.logdata}
+                            onChange = {this.logging.bind(this)}
+                            ref={(input) => { this.nameInput = input; }}  />
+                    </KeyboardEventHandler>                             
             </div>
         )
         

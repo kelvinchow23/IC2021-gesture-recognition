@@ -54,7 +54,7 @@ import {updateUserData} from '../actions';
                     <div className='row mb-5'>
                         <label className='col-4'>Password:</label>
                         <input className='col-5' type='password' required
-                        value = {this.state.password} onChange = {this.changePassword.bind(this)}                        />
+                        value = {this.state.password} onChange = {this.changePassword.bind(this)}/>
                     </div>
                     <p><i>For testing, use username: <b>test</b>, password: <b>test</b>.</i></p>
                 </Modal.Body>
