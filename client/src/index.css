@@ -56,4 +56,9 @@
 .my-nav-separator {
     color: rgba(255,255,255,.5);
     padding: 0.5rem 0rem;
+    text-transform: uppercase;
+}
+
+h3 {
+    text-transform: capitalize;
 }

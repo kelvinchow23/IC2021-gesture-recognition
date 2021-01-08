@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux';
@@ -13,6 +13,7 @@ import {updateUserData} from '../actions';
          this.state = {
              username: '',
              password: '',
+             redirectHome: false,
          }
      }
      onSubmit(e) {
@@ -25,7 +26,12 @@ import {updateUserData} from '../actions';
            .then(res => {
                console.log(res.data.username);
                console.log(res.data.name);    
-               this.props.updateUserData(res.data.name, res.data.username);                        
+               this.props.updateUserData(res.data.name, res.data.username); 
+               if (res.data.username == undefined) {
+                   alert('User not found.  Please check user info and try again or signup as a new user.')
+               } else {
+                this.setState({redirectHome: true});
+               }
             }); 
     }
 
@@ -37,37 +43,42 @@ import {updateUserData} from '../actions';
         this.setState({password: e.target.value});
     }
     render() {
-        return (
-            <div>
-                <Modal.Dialog>
-                <Modal.Header>
-                    <Modal.Title>Login</Modal.Title>
-                </Modal.Header>
-                <form onSubmit={this.onSubmit.bind(this)}>
-                <Modal.Body>
-                    <div className='row mt-3 mb-2'>
-                        <label className='col-4'>Username: </label>
-                        <input className='col-5' type='text' required
-                         value = {this.state.username} onChange={this.changeUsername.bind(this)}/>
-                    </div>
+        if (this.state.redirectHome) {
+            return <Redirect to='/' />
+        } else {
+            return (
+                <div>
+                    <Modal.Dialog>
+                    <Modal.Header>
+                        <Modal.Title>Login</Modal.Title>
+                    </Modal.Header>
+                    <form onSubmit={this.onSubmit.bind(this)}>
+                    <Modal.Body>
+                        <div className='row mt-3 mb-2'>
+                            <label className='col-4'>Username: </label>
+                            <input className='col-5' type='text' required
+                            value = {this.state.username} onChange={this.changeUsername.bind(this)}/>
+                        </div>
 
-                    <div className='row mb-5'>
-                        <label className='col-4'>Password:</label>
-                        <input className='col-5' type='password' required
-                        value = {this.state.password} onChange = {this.changePassword.bind(this)}/>
-                    </div>
-                    <p><i>For testing, use username: <b>test</b>, password: <b>test</b>.</i></p>
-                </Modal.Body>
+                        <div className='row mb-5'>
+                            <label className='col-4'>Password:</label>
+                            <input className='col-5' type='password' required
+                            value = {this.state.password} onChange = {this.changePassword.bind(this)}/>
+                        </div>
+                        <p><i>For testing, use username: <b>testuser</b>, password: <b>testuser</b>.</i></p>
+                        <p><i>For administrator, use username: <b>admin</b>, password: <b>admin</b>.</i></p>
+                    </Modal.Body>
 
-                <Modal.Footer>
-                    <input type='submit' className='btn btn-primary' value='Login' />
-                    <Link to ='/signup'><Button variant='secondary'>New user?</Button></Link>
-                </Modal.Footer>
-                </form>
-                </Modal.Dialog>  
+                    <Modal.Footer>
+                        <input type='submit' className='btn btn-primary' value='Login' />
+                        <Link to ='/signup'><Button variant='secondary'>New user?</Button></Link>
+                    </Modal.Footer>
+                    </form>
+                    </Modal.Dialog>  
 
-            </div>
-        )
+                </div>
+            )
+        }
     }
  }
 

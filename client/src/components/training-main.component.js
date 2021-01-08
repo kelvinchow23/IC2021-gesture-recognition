@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux';
@@ -7,6 +7,8 @@ import {updateTrainingSettings} from '../actions';
 
 let currentdate = new Date();
 let utf8decoder = new TextDecoder();
+let port;
+let reader;
 class TrainingMain extends Component {
 
     constructor (props) {
@@ -28,7 +30,7 @@ class TrainingMain extends Component {
 
     sendLog() {
         const addLog = {
-            name: 'test',
+            name: this.props.userData.username,
             letter: this.state.letter,
             datetime: (String(currentdate.getMonth() + 1) + '/'
             + (currentdate.getDate()) + '/' + (currentdate.getFullYear()) + '@'
@@ -36,15 +38,15 @@ class TrainingMain extends Component {
             + (currentdate.getSeconds())),
             data: this.state.logdata,
         }
-        console.log(addLog);
+        //console.log(addLog);
         this.setState({textColour: ''});
-        /*
+        
         axios.post(window.location.href, addLog)
            .then(res => console.log(res.data));    
         this.setState({
             logdata: ''
         }); 
-        */
+        
         this.trainingReady();       
     }
 
@@ -107,8 +109,8 @@ class TrainingMain extends Component {
     }
 
     async componentDidMount() {  
-        let trainType = this.props.someData.trainingType;
-        let trainNum = parseInt(this.props.someData.trainingNumber);  
+        let trainType = this.props.trainData.trainingType;
+        let trainNum = parseInt(this.props.trainData.trainingNumber);  
         let arr =[]      
         if (trainType === 'alphabet') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.repeat(trainNum).split('')
@@ -124,11 +126,16 @@ class TrainingMain extends Component {
             letterlist: arr,
             counter: arr.length
         });
+        console.log(navigator);
 
         if ("serial" in navigator) {
-            const port = await navigator.serial.requestPort();
-            await port.open({baudRate : 750000}); 
-            const reader = port.readable.getReader();
+            console.log(port);
+            if (port === undefined){ 
+                port = await navigator.serial.requestPort();
+                await port.open({baudRate : 750000}); 
+                reader = port.readable.getReader();
+            }
+            console.log(port);
             while (true) {
                 const { value, done } = await reader.read();
                 if (done) {
@@ -143,8 +150,8 @@ class TrainingMain extends Component {
     }
 
     componentWillUnmount () {
-        this.props.updateTrainingSettings(this.props.someData.trainingType, 
-            this.props.someData.trainingNumber,
+        this.props.updateTrainingSettings(this.props.trainData.trainingType, 
+            this.props.trainData.trainingNumber,
             false, true);
     }
 
@@ -181,7 +188,8 @@ class TrainingMain extends Component {
 
  const mapStateToProps = (state) => {
     return {
-        someData: state.trainSettings
+        trainData: state.trainSettings,
+        userData: state.userData
     }
 }
 

@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import {connect} from 'react-redux';
+import {updateUserData} from '../actions';
 
- export default class SignupsList extends Component {
+class SignupsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +17,8 @@ import Button from 'react-bootstrap/Button';
             confirmPassword: '',
             usernameWarning: '',
             emailWarning: '',
-            passwordWarning: ''
+            passwordWarning: '',
+            redirectHome: false,
         }
     }
     onSubmit(e) {
@@ -28,7 +31,11 @@ import Button from 'react-bootstrap/Button';
                 password: this.state.password
             };            
             axios.post(window.location.origin + '/profile', newSignup)
-                .then(res => console.log(res.data)); 
+                .then(res => {
+                    console.log(res.data);
+                    this.props.updateUserData(this.state.name, this.state.username);  
+                    this.setState({redirectHome: true});
+                }); 
         } else {
             alert('Please review warning messages and try again.');
         }
@@ -112,8 +119,10 @@ import Button from 'react-bootstrap/Button';
     }
 
     render() {
-        return (
-            <div>
+        if (this.state.redirectHome) {
+            return <Redirect to='/' />
+        } else {
+            return (           
                 <Modal.Dialog>
                 <Modal.Header>
                     <Modal.Title>Sign up</Modal.Title>
@@ -160,7 +169,15 @@ import Button from 'react-bootstrap/Button';
                 </Modal.Footer>
                 </form>
                 </Modal.Dialog>  
-            </div>
-        )
+            )
+        }        
     }
  }
+
+ const mapDispatchToProps = () => {
+    return {
+        updateUserData,
+    }
+ }
+
+ export default connect(null, mapDispatchToProps())(SignupsList)
