@@ -8,6 +8,7 @@ import StatsList from "./components/stats-list.component";
 import SettingsList from "./components/settings-list.component";
 import LoginList from "./components/login-list.component";
 import SignupList from "./components/signup-list.component";
+import AdminList from "./components/admin-list.component";
 
  export default class App extends Component {
     render() {
@@ -20,6 +21,7 @@ import SignupList from "./components/signup-list.component";
                     <Route path ="/training" exact component={TrainingList} />
                     <Route path ="/stats" exact component={StatsList} />
                     <Route path ="/settings" exact component={SettingsList} />
+                    <Route path ="/admin" exact component={AdminList} />
                     <Route path ="/login" exact component={LoginList} />
                     <Route path ="/signup" exact component={SignupList} />
                 </Router>    

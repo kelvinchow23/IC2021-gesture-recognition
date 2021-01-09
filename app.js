@@ -13,6 +13,7 @@ const app = express();
 const trainingRoute = require('./routes/training');
 const statsRoute = require('./routes/stats');
 const profileRoute = require('./routes/profile');
+const adminRoute = require('./routes/admin');
 
 app.use(express.json());
 app.use(cors({
@@ -36,6 +37,8 @@ app.use(express.static('./client/build/'));
 app.use('/training', trainingRoute);
 app.use('/stats', statsRoute);
 app.use('/profile', profileRoute);
+app.use('/admin', adminRoute);
+
 
 //ROUTES
 app.get('/', (req, res) => {
