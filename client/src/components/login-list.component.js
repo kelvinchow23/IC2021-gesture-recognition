@@ -27,7 +27,7 @@ import {updateUserData} from '../actions';
                console.log(res.data.username);
                console.log(res.data.name);    
                this.props.updateUserData(res.data.name, res.data.username); 
-               if (res.data.username == undefined) {
+               if (res.data.username === undefined) {
                    alert('User not found.  Please check user info and try again or signup as a new user.')
                } else {
                 this.setState({redirectHome: true});

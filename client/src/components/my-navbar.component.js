@@ -46,13 +46,14 @@ import {updateUserData} from '../actions';
                 }
                 </div>
                 <div className = 'navbar-nav ml-auto'>
-                {(this.props.userData.username == '') &&
+                {(this.props.userData.username === '') &&
                     <Fragment>
                     <Link to ='/login' className="navbar-item nav-link">
                         <Button variant='light'>Login</Button>
                     </Link>
                     </Fragment> 
-                    ||
+                }
+                {
                     (this.props.userData.username !== '') &&
                     <Fragment>
                         <Link to ='/userprofile' className="navbar-item nav-link my-nav-separator">{this.props.userData.username}</Link>

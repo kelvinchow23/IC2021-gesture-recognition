@@ -62,3 +62,9 @@
 h3 {
     text-transform: capitalize;
 }
+
+.truncate-table-data {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

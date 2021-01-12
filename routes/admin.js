@@ -14,9 +14,10 @@ router.get('/getAllUsers', async (req, res) => {
     }
 });
 
-router.get('/getUserData/:username', async (req, res) => {
+
+router.get('/getTrainingData/:username', async (req, res) => {
     try {
-        const trainings = await Training.find({username: req.params.username});
+        const trainings = await Training.find({name: req.params.username});
         res.json(trainings);
     } catch (err) {
         res.json({message:err});
