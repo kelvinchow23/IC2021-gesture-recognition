@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 
  class DashboardList extends Component {
     render() {
-        if (this.props.someData.name !== '') {
+        if (this.props.userData.name !== '') {
             return(
                 <div>
-                    <h3>Hello {this.props.someData.name}!</h3>
+                    <h3>Hello {this.props.userData.name}!</h3>
                     <p> Please use the menu bar to navigate to stuff.</p>
                 </div>                
             )
@@ -28,7 +28,7 @@ import {connect} from 'react-redux';
  
 const mapStateToProps = (state) => {
     return {
-        someData: state.userData
+        userData: state.userData
     }
 }
 

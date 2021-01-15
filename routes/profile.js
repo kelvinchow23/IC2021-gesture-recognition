@@ -14,6 +14,27 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.patch('/:username', async (req, res) => {
+    try {
+        const updatedProfile = await Profile.updateOne(
+            {username: req.params.username}, 
+            {$set: {status: 'Not Enough Data for Training'}}
+            );
+        res.json(updatedProfile);
+    } catch(err) {
+        res.json ({message:err});
+    }
+});
+
+router.delete('/:username', async (req, res) => {
+    try {
+        const removedProfile = await Profile.remove({username: req.params.username});
+        res.json (removedProfile);
+    } catch (err) {
+        res.json({message: err});
+    }
+});
+
 router.get('/checkuser/:profileId', async (req, res) => {
     try {
         const profiles = await Profile.find({username: req.params.profileId});

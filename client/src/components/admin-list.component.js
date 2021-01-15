@@ -4,13 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-const array = [{id:1, name:"test", username:"test", email:"test@test.com"},
-{id:2, name:"Kelvin", username:"kthchow", email:"kelvin@test.com"},
-{id:3, name:"admin", username:"admin", email:"admin@test.com"},
-{id:4, name:"testuser", username:"testuser", email:"testuser@test.com"}
-];
-
-
  export default class AdminList extends Component {
     constructor(props) {
         super(props);
