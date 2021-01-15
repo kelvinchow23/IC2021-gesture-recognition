@@ -77,7 +77,7 @@ const array = [{id:1, name:"test", username:"test", email:"test@test.com"},
         axios.get(window.location.href + '/getAllUsers')
             .then(res => {
                 if (res.data) {
-                    console.log(res.data);
+                    this.setState({profileData: res.data});
                 } else {
                     console.log('No users exist!');
                 }
@@ -107,9 +107,7 @@ const array = [{id:1, name:"test", username:"test", email:"test@test.com"},
     }
 
     componentDidMount() {
-        this.setState({
-            profileData: array
-        })
+        this.getAllUsers();
     }
 
     render() {

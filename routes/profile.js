@@ -52,7 +52,8 @@ router.post("/", async (req, res) => {
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
+        status: req.body.status
     });
     try {
         const savedProfile = await profile.save();

@@ -2,7 +2,8 @@ import {UPDATE_USER_DATA} from '../actions';
 
 const inintialState = {
     username: '',
-    name: ''
+    name: '',
+    status: ''
 }
 
 export default function userData(state = inintialState,action) {

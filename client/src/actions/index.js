@@ -16,12 +16,13 @@ export const updateTrainingSettings = (trainType, trainNumber, showMain, showSet
 }
 
 
-export const updateUserData = (name, username) => {
+export const updateUserData = (name, username, status) => {
     return {
         type: 'UPDATE_USER_DATA',
         payload: {
             name: name,
-            username: username
+            username: username,
+            status: status
         }
     }
 }

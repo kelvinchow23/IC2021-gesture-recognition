@@ -28,12 +28,13 @@ class SignupsList extends Component {
                 name: this.state.name,
                 username: this.state.username,
                 email: this.state.email,
-                password: this.state.password
+                password: this.state.password,
+                status: 'New User Profile Created'
             };            
             axios.post(window.location.origin + '/profile', newSignup)
                 .then(res => {
                     console.log(res.data);
-                    this.props.updateUserData(this.state.name, this.state.username);  
+                    this.props.updateUserData(this.state.name, this.state.username, 'New User Profile Created');  
                     this.setState({redirectHome: true});
                 }); 
         } else {

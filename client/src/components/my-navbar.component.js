@@ -16,7 +16,7 @@ import {updateUserData} from '../actions';
     }
 
      logout() {
-         this.props.updateUserData('','');
+         this.props.updateUserData('','','');
          window.location.pathname = '';
 
      }
