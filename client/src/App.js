@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MyNavbar from "./components/my-navbar.component";
 import DashboardList from "./components/dashboard-list.component";
 import TrainingList from "./components/training-list.component";
-import StatsList from "./components/stats-list.component";
 import SettingsList from "./components/settings-list.component";
 import LoginList from "./components/login-list.component";
 import SignupList from "./components/signup-list.component";
@@ -19,7 +18,6 @@ import AdminList from "./components/admin-list.component";
                     <br/>
                     <Route path ="/" exact component={DashboardList} />
                     <Route path ="/training" exact component={TrainingList} />
-                    <Route path ="/stats" exact component={StatsList} />
                     <Route path ="/settings" exact component={SettingsList} />
                     <Route path ="/admin" exact component={AdminList} />
                     <Route path ="/login" exact component={LoginList} />

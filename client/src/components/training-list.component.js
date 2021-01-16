@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import TrainingSettings from './training-settings.component';
+import TrainingSettings from './training-subcomponents/training-settings.component';
+import TrainingMain from './training-subcomponents/training-main.component';
 import {Redirect} from 'react-router-dom';
-import TrainingMain from './training-main.component';
 import {connect} from 'react-redux';
 
 

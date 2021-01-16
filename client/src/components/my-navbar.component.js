@@ -34,9 +34,7 @@ import {updateUserData} from '../actions';
                 <div className='my-nav-separator'>|</div>                
                 <div className = "navbar-nav mr-auto" activekey={window.location.pathname}>
                         <Link to ='/training' className="navbar-item nav-link">Training</Link>
-                        <div className='my-nav-separator'>|</div>                
-                        <Link to ='/stats' className="navbar-item nav-link">Stats</Link>
-                        <div className='my-nav-separator'>|</div>                
+                        <div className='my-nav-separator'>|</div>                              
                         <Link to ='/settings' className="navbar-item nav-link">Settings</Link>                
                 {(this.props.userData.username ==='admin') && 
                     <Fragment>

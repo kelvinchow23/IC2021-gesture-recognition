@@ -23,10 +23,7 @@ import {updateUserData} from '../actions';
             password: this.state.password,
         };
         axios.post(window.location.origin + '/profile/validatelogin', newLogin)
-           .then(res => {
-               console.log(res.data.username);
-               console.log(res.data.name); 
-               console.log(res.data.status);   
+           .then(res => { 
                this.props.updateUserData(res.data.name, res.data.username, res.data.status); 
                if (res.data.username === undefined) {
                    alert('User not found.  Please check user info and try again or signup as a new user.')

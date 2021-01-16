@@ -21,6 +21,15 @@ router.get('/getall', async (req, res) => {
     }
 });
 
+router.get('/:username', async (req, res) => {
+    try {
+        const trainingCount = await Training.count({name: req.params.username});
+        res.json(trainingCount);
+    } catch (err) {
+        res.json({message:err});
+    }
+});
+
 router.post("/", async (req, res) => {
     const training = new Training({
         name: req.body.name,

@@ -3,7 +3,7 @@ import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux';
-import {updateTrainingSettings} from '../actions';
+import {updateTrainingSettings} from '../../actions';
 
 let currentdate = new Date();
 let utf8decoder = new TextDecoder();

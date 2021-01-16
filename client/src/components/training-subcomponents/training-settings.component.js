@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/button';
 import {connect} from 'react-redux';
-import {updateTrainingSettings} from '../actions';
+import {updateTrainingSettings} from '../../actions';
 
  class TrainingSettings extends Component {
     constructor (props) {
@@ -29,32 +29,27 @@ import {updateTrainingSettings} from '../actions';
     render() {
         return (
             <div>
-                <div>
                 <h3>Training Configuration</h3>
                 <p>Layout: Start button, information, current settings: go to settings to change</p>
                 <p>Current configurations: Gesture actions: Trace letters.  Time limit. Training sets.</p>
                 <p>Pop-up warning message for selecting remote device on next page.</p>
-                <label>
-                Training Set:
-                <select value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
-                    <option  value='alphabet'>Alphabet (26)</option>
-                    <option value='alphanumeric'>Alphanumeric (36)</option>
-                    <option value='custom'>Custom</option>
-                </select>
-                </label>
-                <label>
-                # of Sets
-                <select value={this.state.trainNum} onChange={this.onNumberChange.bind(this)}>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                </select>
-                </label> 
-                <div>
-                 {/* <Button className='btn-primary' onClick={this.props.startTraining}>Start training</Button>
-                 */}
-                 <Button className='btn-primary' onClick={this.startTraining.bind(this)}>Start training</Button>
-                </div>
+
+                <div className = 'row'>
+                    <label className = 'col-3'>
+                    Training Set:  <select value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
+                        <option  value='alphabet'>Alphabet (26)</option>
+                        <option value='alphanumeric'>Alphanumeric (36)</option>
+                        <option value='custom'>Custom</option>
+                    </select>
+                    </label>
+                    <label className = 'col-2'>
+                    # of Sets:  <select value={this.state.trainNum} onChange={this.onNumberChange.bind(this)}>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                    </select>
+                    </label> 
+                    <Button className='btn-primary col-2' onClick={this.startTraining.bind(this)}>Start training</Button>
                 </div>
             </div>
         )

@@ -69,3 +69,13 @@ h3 {
     overflow: hidden;
     max-width: 37rem;
 }
+
+.card-title{
+    padding: 1rem;
+}
+
+.card-header {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
