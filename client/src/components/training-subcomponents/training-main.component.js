@@ -111,8 +111,11 @@ class TrainingMain extends Component {
     async componentDidMount() {  
         let trainType = this.props.trainData.trainingType;
         let trainNum = parseInt(this.props.trainData.trainingNumber);  
-        let arr =[]      
-        if (trainType === 'alphabet') {
+        let arr =[]   
+        if (trainType === 'hello-world') {
+            arr = 'HELOWRD'.repeat(trainNum).split('')
+            .sort(function(){return 0.5-Math.random()});
+        } else if (trainType === 'alphabet') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.repeat(trainNum).split('')
             .sort(function(){return 0.5-Math.random()});
         } else if (trainType ==='alphanumeric') {
