@@ -37,10 +37,11 @@ import {updateTrainingSettings} from '../../actions';
                 <div className = 'row'>
                     <label className = 'col-3'>
                     Training Set:  <select value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
-                        <option  value='hello-world'>Hello World (7)</option>
+                        <option  value='hello-world'>Hello World (9)</option>
                         <option  value='alphabet'>Alphabet (26)</option>
                         <option value='alphanumeric'>Alphanumeric (36)</option>
                         <option value='custom'>Custom</option>
+                        <option value='negative'>Negative Data(10)</option>
                     </select>
                     </label>
                     <label className = 'col-2'>
@@ -50,6 +51,8 @@ import {updateTrainingSettings} from '../../actions';
                         <option value='3'>3</option>
                         <option value='4'>4</option>
                         <option value='5'>5</option>
+                        <option value='7'>7</option>
+                        <option value='10'>10</option>
                     </select>
                     </label> 
                     <Button className='btn-primary col-2' onClick={this.startTraining.bind(this)}>Start training</Button>

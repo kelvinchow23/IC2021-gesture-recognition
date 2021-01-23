@@ -21,6 +21,15 @@ router.get('/getall', async (req, res) => {
     }
 });
 
+router.delete('/:trainingId', async (req, res) => {
+    try {
+        const removedTraining = await Training.remove({ _id: req.params.trainingId});
+        res.json(removedTraining);
+    } catch (err) {
+        res.json({message: err});
+    }
+});
+
 router.get('/:username', async (req, res) => {
     try {
         const trainingCount = await Training.count({name: req.params.username});

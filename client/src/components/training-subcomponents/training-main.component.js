@@ -103,9 +103,15 @@ class TrainingMain extends Component {
             showProgressBar: false,
             instructionText2: 'FINISHED!!!',
             letter: '',
-            showFinishedScreen: true,
             counter: this.state.counter -1
         })
+        this.props.updateTrainingSettings(this.props.trainData.trainingType, 
+            this.props.trainData.trainingNumber,
+            false, false);
+    }
+
+    repeatTraining() {
+
     }
 
     async componentDidMount() {  
@@ -113,7 +119,7 @@ class TrainingMain extends Component {
         let trainNum = parseInt(this.props.trainData.trainingNumber);  
         let arr =[]   
         if (trainType === 'hello-world') {
-            arr = 'HELOWRD'.repeat(trainNum).split('')
+            arr = 'HELOWRDUS'.repeat(trainNum).split('')
             .sort(function(){return 0.5-Math.random()});
         } else if (trainType === 'alphabet') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.repeat(trainNum).split('')
@@ -121,6 +127,8 @@ class TrainingMain extends Component {
         } else if (trainType ==='alphanumeric') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.repeat(trainNum).split('')
             .sort(function(){return 0.5-Math.random()});
+        } else if (trainType === 'negative') {
+            arr = '??????????'.repeat(trainNum);
         } else {
             alert('Not yet coded, please go back and choose another training set. Sorry.');
             window.location.reload();
@@ -135,7 +143,7 @@ class TrainingMain extends Component {
             console.log(port);
             if (port === undefined){ 
                 port = await navigator.serial.requestPort();
-                await port.open({baudRate : 750000}); 
+                await port.open({baudRate : 115200}); 
                 reader = port.readable.getReader();
             }
             console.log(port);
@@ -153,9 +161,8 @@ class TrainingMain extends Component {
     }
 
     componentWillUnmount () {
-        this.props.updateTrainingSettings(this.props.trainData.trainingType, 
-            this.props.trainData.trainingNumber,
-            false, true);
+        reader.cancel();
+        port.close();
     }
 
     render() {
@@ -175,13 +182,6 @@ class TrainingMain extends Component {
                 <div className='training-instructions-2'>
                     {this.state.instructionText2}                
                 </div>
-
-                {this.state.showFinishedScreen &&
-                <div className='row mt-5'>                    
-                    <Button className ='my-big-button' variant='primary'>REPEAT TRAINING?</Button>
-                    <Button className ='my-big-button my-button-gutter' variant='secondary'>VIEW STATS</Button>
-                    <Button className ='my-big-button' variant='danger'>LOGOUT</Button>
-                </div>}
                 <div className={`next-letter col-6 offset-3 ${this.state.textColour}`}>{this.state.letter}</div>                            
             </div>
         )

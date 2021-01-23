@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TrainingSettings from './training-subcomponents/training-settings.component';
 import TrainingMain from './training-subcomponents/training-main.component';
+import TrainingFinished from './training-subcomponents/training-finished.component';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -15,6 +16,12 @@ import {connect} from 'react-redux';
 
     redirecttoLogin() {
         setTimeout(() => this.setState({redirectLogin: true}), 1500);
+    }
+
+    componentWillUnmount () {
+        this.props.updateTrainingSettings(this.props.trainData.trainingType, 
+            this.props.trainData.trainingNumber,
+            false, true);
     }
 
     render() {
@@ -32,6 +39,9 @@ import {connect} from 'react-redux';
                 <div>
                     {this.props.trainingSettings.showTrainingSettings && <TrainingSettings/>}
                     {this.props.trainingSettings.showTrainingMain && <TrainingMain/>}
+                    {(!this.props.trainingSettings.showTrainingFinished && 
+                     !this.props.trainingSettings.showTrainingSettings) &&    
+                     <TrainingFinished/>}
                 </div>
             
             )
