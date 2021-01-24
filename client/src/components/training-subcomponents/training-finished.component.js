@@ -16,7 +16,11 @@ class TrainingFinished extends Component {
     repeatTraining() {
         this.props.updateTrainingSettings(this.props.trainData.trainingType, 
                                         this.props.trainData.trainingNumber,
-                                        true, false);
+                                        true, false, false);
+    }
+
+    redirectSettings() {
+        this.setState({redirectSettings: true});
     }
 
     logout() {
@@ -25,13 +29,21 @@ class TrainingFinished extends Component {
     }
 
     render() {
+        if (this.state.redirectSettings) {
+            return <Redirect to = '/settings' />
+        } else {
             return (     
-                <div className='row mt-5'>                    
+                <div>   
+                    <h4 className='mb-5'>Well Done!</h4>    
+                    <div className='row'>
                     <Button className ='my-big-button' variant='primary' onClick = {this.repeatTraining.bind(this)}>REPEAT TRAINING?</Button>
-                    <Button className ='my-big-button my-button-gutter' variant='secondary'>VIEW SETTINGS</Button>
+                    <Button className ='my-big-button my-button-gutter' variant='secondary' onClick = {this.redirectSettings.bind(this)}>VIEW SETTINGS</Button>
                     <Button className ='my-big-button' variant='danger' onClick = {this.logout.bind(this)}>LOGOUT</Button>
+                    </div>             
+                    
                 </div>
-            )        
+            )    
+        }               
     }
  }
 

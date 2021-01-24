@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux';
 import {updateTrainingSettings} from '../../actions';
 
@@ -31,7 +30,7 @@ class TrainingMain extends Component {
     sendLog() {
         const addLog = {
             name: this.props.userData.username,
-            letter: this.state.letter,
+            gesture: this.state.letter,
             datetime: (String(currentdate.getMonth() + 1) + '/'
             + (currentdate.getDate()) + '/' + (currentdate.getFullYear()) + '@'
             + (currentdate.getHours()) + ':' +  (currentdate.getMinutes()) + ':'
@@ -50,22 +49,37 @@ class TrainingMain extends Component {
         this.trainingReady();       
     }
 
+    getTrainingCount(username) {   // Check if we need to change the status
+        axios.get(window.location.origin+'/training/'+username)
+            .then(res => {
+                    console.log(res.data);
+                    console.log(this.props.userData.status);
+                    if (res.data === 0 || this.props.userData.status === 'New User Profile Created') {
+                        const updateUser = {
+                            status: 'Needs More Data'
+                        }
+                        axios.patch(window.location.origin + '/profile/updateUserStatus/'+username, updateUser)
+                            .then (res => console.log(res.data));
+                    } 
+            })
+    }
+
     async startTracing(key) {
         //Display next letter
         if (this.state.counter === this.state.letterlist.length) {
-            if (key.includes('A')){   // First button press
+            if (key==='A'){   // First button press
                 this.initializeTraining();
-            } else if (key.includes('Z')){  // key = esc, first button release
+            } else if (key==='Z'){  // key = esc, first button release
                 this.trainingReady();
             }
             
         } else if (this.state.counter !== -1) {      // Test that the device can communicate with the web app.  On first load, setup stuff.
-            if (key.includes('A')) {
+            if (key==='A') {
                 this.setState({
                     instructionText2: 'GO!',
                     textColour: 'green-text'
                 });    
-            } else if(key.includes('Z')) {
+            } else if(key==='Z') {
                 this.sendLog();
             } else {
                 this.setState({logdata: this.state.logdata + key});
@@ -74,7 +88,7 @@ class TrainingMain extends Component {
     }
 
     initializeTraining() {
-        console.log('hi');
+        this.getTrainingCount(this.props.userData.username);
         this.setState({
             instructionText2: 'Device Connected! Please wait a moment...',
         });
@@ -107,27 +121,23 @@ class TrainingMain extends Component {
         })
         this.props.updateTrainingSettings(this.props.trainData.trainingType, 
             this.props.trainData.trainingNumber,
-            false, false);
-    }
-
-    repeatTraining() {
-
+            false, false, true);
     }
 
     async componentDidMount() {  
         let trainType = this.props.trainData.trainingType;
         let trainNum = parseInt(this.props.trainData.trainingNumber);  
         let arr =[]   
-        if (trainType === 'hello-world') {
+        if (trainType === 'hello-world_9') {
             arr = 'HELOWRDUS'.repeat(trainNum).split('')
             .sort(function(){return 0.5-Math.random()});
-        } else if (trainType === 'alphabet') {
+        } else if (trainType === 'alphabet_26') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.repeat(trainNum).split('')
             .sort(function(){return 0.5-Math.random()});
-        } else if (trainType ==='alphanumeric') {
+        } else if (trainType ==='alphanumeric_36') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.repeat(trainNum).split('')
             .sort(function(){return 0.5-Math.random()});
-        } else if (trainType === 'negative') {
+        } else if (trainType === 'negative_10') {
             arr = '??????????'.repeat(trainNum);
         } else {
             alert('Not yet coded, please go back and choose another training set. Sorry.');
@@ -175,7 +185,7 @@ class TrainingMain extends Component {
                 {this.state.showProgressBar && 
                 <div className='row'>
                     <ProgressBar className='col-9 offset-1 my-progress-bar' now={this.state.progress} />
-                    <div className='align-self-center col-2'>SETS LEFT: {this.state.counter+1}</div>
+                    <div className='align-self-center col-2'>GESTURES LEFT: {this.state.counter+1}</div>
                 </div>
                 }
                 <br/>

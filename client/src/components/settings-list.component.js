@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
+import Modal from 'react-bootstrap/Modal';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {updateUserData} from '../actions';
@@ -14,79 +16,77 @@ class SettingsList extends Component {
         super(props);
         this.state = {
             redirectLogin: false,
-            trainingCount: 0,
-            counter: 1000,
-            message: '',
+            counter: 450,
+            message: 'Please go to the training tab to acquire training data before requesting a training model.',  // Default message
             currentStatus: '',
-            borderColour: 'danger'   // Default is a new user without enough training data
+            username: '',
+            borderColour: 'danger',   // Default is a new user without enough training data
+            showWarningModal: false,
+            showSuccessAlert: false,
+            showWarningAlert: false,
         };
     }
 
-    getTrainingCount(username) {
-        axios.get(window.location.origin+'/training/'+username)
+    getTrainingCount() {
+        let newMessage;
+        axios.get(window.location.origin+'/training/'+this.state.username)
             .then(res => {
                 if (res.data) {
                     console.log(res.data);
+                    if (res.data === 0) {
+                        newMessage = 'Please go to the training tab to acquire training data before requesting a training model.'
+                    } else if (res.data < 450) {
+                        newMessage = "Please go to the training tab to acquire more data before requesting a training model.";
+
+                    } else {
+                        newMessage = "There is enough data for training.  Please click the REQUEST button to create or updata your personalized model."
+                    }
+                    console.log(newMessage);
                     this.setState({
-                        trainingCount : res.data,
-                        counter: 1000-res.data
-                    }, () => this.checkStatus()); 
-                } else {
-                    // No logs found so this is a new user.  Show default empty view 
+                        counter: 450-res.data,
+                        message: newMessage
+                    }); 
                 }
             })
     }
 
-    checkStatus() {
-        let newMessage;
-        if (this.state.currentStatus !== 'Requested Training') {
-            // Check if we need to update the status
-            if (this.state.trainingCount === 0) {
-                checkedStatus = 'New User Profile Created';
-                newMessage = 'Please go to the training tab to acquire training before requesting a training model.'
-            } else if (this.state.trainingCount < 1000) {
-                checkedStatus = 'Not Enough Data For Training';                
-                newMessage = "Please go to the training tab to acquire more data before requestion a training model.";
-
-            } else {
-                checkedStatus = 'Ready to Request Training';
-                newMessage = 'Ready to request a training model.  Please click the REQUEST button below to initiate process.';
-            }
-
-
-            // Update the current status if necessary
-            if (checkedStatus !== this.state.currentStatus) {
-                console.log('updated status');
-                this.setState({currentStatus: checkedStatus});
-                this.props.updateUserData(this.props.userData.name, this.props.userData.username, checkedStatus);
-                // axios patch status
-            }
+    requestTrainingOptions() {
+        if (this.state.currentStatus === 'Model Training Requested') {
+            this.setState({showWarningAlert: true});
+        } else if (this.state.currentStatus === 'Ready to Request Training') {
+            this.requestTraining();         
         } else {
-            newMessage ='Training request has been received.  When the model is ready, you will be notified to return back here to initiate the upload process.';
+            this.modalOpen();
         }
-        this.setState({message: newMessage});
-
     }
 
     requestTraining() {
-        if (this.state.currentStatus === 'Training Requested') {
-            alert('Training has already been requested.  You will be notified when the model is ready.  Thank you.');
-        } else if (this.state.currentStatus === 'Ready to Request Training') {
-            alert('Training has been requested! You will be notified when the model is ready. Thank you for your patience');
-        } else {
-            alert('TODO: Warning message for not enough training, modal to continue anyway');
+        const updateUser = {
+            status: 'Model Training Requested'
         }
+        axios.patch(window.location.origin + '/profile/updateUserStatus/'+ this.state.username, updateUser)
+            .then (res => console.log(res.data));
+        this.modalClose();
+        this.setState({showSuccessAlert: true});
     }
 
+    modalClose() {
+        this.setState({showWarningModal: false});
+    }
+
+    modalOpen() {
+        this.setState({showWarningModal: true});
+    }
     
     uploadModel() {
-        if (this.state.currentStatus === 'Training Requested') {
-            alert('Training has already been requested.  You will be notified when the model is ready.  Thank you.');
-        } else if (this.state.currentStatus === 'Ready to Request Training') {
-            alert('Training has been requested! You will be notified when the model is ready. Thank you for your patience');
-        } else {
-            alert('TODO: Warning message for not enough training, modal to continue anyway');
+        alert("TODO: Model uploading is currently done through Arduino IDE.  It will be integrated with an OTA upload through this button in a future update (hopefully)");
+        /*
+        if (this.state.currentStatus === 'Model Ready to Upload') {
+            alert('TODO: model upload');
+         } else {
+            alert('There is no model to upload currently.  Please either collect more data, or request for model training.');
         }
+        */
     }
 
     redirecttoLogin() {
@@ -94,11 +94,13 @@ class SettingsList extends Component {
     }
 
     componentDidMount() {
-        this.setState({currentStatus: this.props.userData.status}, () => this.getTrainingCount(this.props.userData.username));
+        this.setState({currentStatus: this.props.userData.status,
+                        username: this.props.userData.username
+        }, () => this.getTrainingCount());
     }
 
     render() {
-        if (this.props.userData.username === '') {
+        if (this.state.username === '') {
             this.redirecttoLogin();
             return (
                 <h4>
@@ -110,6 +112,16 @@ class SettingsList extends Component {
         } else {
             return (
                 <div>
+                    <Alert show={this.state.showSuccessAlert} variant ='success' onClose = {() => this.setState({showSuccessAlert: false})} dismissible>
+                        <Alert.Heading>Request Sent!</Alert.Heading>
+                        <p>You will be notified when your training model is ready to be uploaded to your device.
+                        Please come back to this settings tab when it is ready.  Thank you for your patience.</p>
+                    </Alert>
+                    <Alert show={this.state.showWarningAlert} variant ='danger' onClose = {() => this.setState({showWarningAlert: false})} dismissible>
+                        <Alert.Heading>Request In Progress!</Alert.Heading>
+                        <p>You will be notified when your training model is ready to be uploaded to your device.
+                        Please come back to this settings tab when it is ready.  Thank you for your patience.</p>
+                    </Alert>
                     <h3 className= 'mb-5'>Settings</h3>
                     <CardGroup className = 'mb-5'>
                         <Card variant = {this.state.borderColour}>
@@ -118,6 +130,7 @@ class SettingsList extends Component {
                             <Card.Body>
                                 <p>{this.state.message}</p>
                                 <p>Recommended data reps to go: <strong>{this.state.counter}</strong></p>
+                                <p>Approx. training time left: <strong>{this.state.counter/12} min</strong></p>
                             </Card.Body>
                         </Card>
                         <Card>
@@ -125,7 +138,7 @@ class SettingsList extends Component {
                             <Card.Body>
                                     <div className = 'mb-4'>
                                         <Button variant = {this.state.borderColour} className = 'col-10 offset-1' 
-                                            onClick = {this.requestTraining.bind(this)}>REQUEST TRAINING</Button>   
+                                            onClick = {this.requestTrainingOptions.bind(this)}>REQUEST TRAINING</Button>   
                                     </div>
                                     Pressing the button will send a request to train a model for using this gesture
                                     control remote.  If the button above is red, you can still request for training, 
@@ -145,6 +158,18 @@ class SettingsList extends Component {
                             </Card.Body>
                         </Card>
                     </CardGroup>
+                    <Modal show = {this.state.showWarningModal} handleClose = {this.modalClose.bind(this)}>
+                        <Modal.Header>
+                            <Modal.Title>Warning</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            It is suggested that you collect more gesture data first to get a more accurate model. 
+                        </Modal.Body>
+                        <Modal.Footer>                            
+                            <Button variant = 'primary' onClick = {this.requestTraining.bind(this)} >Request Anyways</Button>
+                            <Button variant='danger' onClick = {this.modalClose.bind(this)}>Cancel</Button>
+                        </Modal.Footer>
+                    </Modal>
 
                     <h5>
                     TODO: configurations for output controls (i.e. different smart devices, different keyboard hotkeys, etc.),

@@ -5,7 +5,7 @@ const TrainingSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    letter: {
+    gesture: {
         type: String,
         required: true
     },

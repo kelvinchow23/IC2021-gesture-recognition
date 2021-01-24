@@ -3,15 +3,6 @@ const router = express.Router();
 const Training = require('../models/Training');
 
 //ROUTES
-router.get('/', async (req, res) => {
-    try {
-        const trainings = await Training.find();
-        res.json(trainings);
-    } catch (err) {
-        res.json({message:err});
-    }
-});
-
 router.get('/getall', async (req, res) => {
     try {
         const trainings = await Training.find();
@@ -30,6 +21,15 @@ router.delete('/:trainingId', async (req, res) => {
     }
 });
 
+router.delete('/delAllbyUser/:userId', async (req, res) => {
+    try {
+        const removedTraining = await Training.remove({ name: req.params.userId});
+        res.json(removedTraining);
+    } catch (err) {
+        res.json({message: err});
+    }
+});
+
 router.get('/:username', async (req, res) => {
     try {
         const trainingCount = await Training.count({name: req.params.username});
@@ -42,7 +42,7 @@ router.get('/:username', async (req, res) => {
 router.post("/", async (req, res) => {
     const training = new Training({
         name: req.body.name,
-        letter: req.body.letter,
+        gesture: req.body.gesture,
         datetime: req.body.datetime,
         data: req.body.data
     });

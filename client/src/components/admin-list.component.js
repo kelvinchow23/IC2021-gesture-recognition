@@ -51,8 +51,6 @@ import {CSVLink} from 'react-csv';
     renderLogTable() {
         let username = this.state.currentUser;
         if (username !== '') {
-            console.log(this.state.trainingData);
-            console.log(this.state.trainingData.length !== 0);
             if (this.state.trainingData.length !== 0) {
                 return (
                     <React.Fragment>
@@ -72,7 +70,7 @@ import {CSVLink} from 'react-csv';
                         <Table>
                             <thead>
                                 <tr>
-                                    <th>Letter</th>
+                                    <th>Gesture</th>
                                     <th>Time</th>
                                     <th className='truncate-table-data'>Data</th>
                                 </tr>
@@ -81,7 +79,7 @@ import {CSVLink} from 'react-csv';
                                 {this.state.trainingData.map(training => {
                                     return(
                                         <tr>
-                                            <td>{training.letter}</td>
+                                            <td>{training.gesture}</td>
                                             <td>{training.datetime}</td>
                                             <td className='truncate-table-data'>{training.data}</td>
                                         </tr>

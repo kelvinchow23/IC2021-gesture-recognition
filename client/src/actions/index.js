@@ -3,14 +3,15 @@ export const UPDATE_TRAINING_SETTINGS = 'UPDATE_TRAINING_SETTINGS';
 export const GET_TRAINING_SETTINGS = 'GET_TRAINING_SETTINGS';
 
 
-export const updateTrainingSettings = (trainType, trainNumber, showMain, showSettings) => {
+export const updateTrainingSettings = (trainType, trainNumber, showMain, showSettings, showFinished) => {
     return {
         type: 'UPDATE_TRAINING_SETTINGS',
         payload: {
             trainingType: trainType,
             trainingNumber: trainNumber,
             showTrainingMain: showMain,
-            showTrainingSettings: showSettings
+            showTrainingSettings: showSettings,
+            showTrainingFinished: showFinished
         }
     }
 }

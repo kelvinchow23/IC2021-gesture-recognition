@@ -7,23 +7,33 @@ import {updateTrainingSettings} from '../../actions';
     constructor (props) {
         super(props);
         this.state = {
-            trainType: 'hello-world',
-            trainNum: '1'
+            trainType: 'hello-world_9',
+            trainNum: 1,
+            trainTypeLength: 9,
+            time: 1,
         }
     }
 
     onTypeChange(e) {
-        this.setState({trainType: e.target.value});
+        let values = e.target.value.split("_");
+        this.setState({
+            trainType: e.target.value,
+            trainTypeLength: parseInt(values[1]),
+            time: parseInt(values[1])*this.state.trainNum/12
+        });
         //this.props.onSelectTypeChange(e.target.value);
     }
     
     onNumberChange(e) {
-        this.setState({trainNum: e.target.value});
+        this.setState({
+            trainNum: e.target.value,
+            time: this.state.trainTypeLength*e.target.value/12
+        });
         //this.props.onSelectNumberChange(e.target.value);
     }
 
     startTraining() {
-        this.props.updateTrainingSettings(this.state.trainType, this.state.trainNum, true, false);
+        this.props.updateTrainingSettings(this.state.trainType, this.state.trainNum, true, false, false);
     }
 
     render() {
@@ -37,11 +47,11 @@ import {updateTrainingSettings} from '../../actions';
                 <div className = 'row'>
                     <label className = 'col-3'>
                     Training Set:  <select value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
-                        <option  value='hello-world'>Hello World (9)</option>
-                        <option  value='alphabet'>Alphabet (26)</option>
-                        <option value='alphanumeric'>Alphanumeric (36)</option>
-                        <option value='custom'>Custom</option>
-                        <option value='negative'>Negative Data(10)</option>
+                        <option  value='hello-world_9'>Hello World (9)</option>
+                        <option  value='alphabet_26'>Alphabet (26)</option>
+                        <option value='alphanumeric_36'>Alphanumeric (36)</option>
+                        <option value='custom_10'>Custom</option>
+                        <option value='negative_10'>Negative Data(10)</option>
                     </select>
                     </label>
                     <label className = 'col-2'>
@@ -54,9 +64,10 @@ import {updateTrainingSettings} from '../../actions';
                         <option value='7'>7</option>
                         <option value='10'>10</option>
                     </select>
-                    </label> 
-                    <Button className='btn-primary col-2' onClick={this.startTraining.bind(this)}>Start training</Button>
+                    </label>
+                    <p className='col-3'>Estimated Time: {this.state.time.toFixed(1)} min</p>
                 </div>
+                <Button className='btn-primary col-2' onClick={this.startTraining.bind(this)}>Start training</Button>
             </div>
         )
     }

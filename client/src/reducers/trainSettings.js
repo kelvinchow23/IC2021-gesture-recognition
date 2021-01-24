@@ -1,9 +1,10 @@
 import {UPDATE_TRAINING_SETTINGS} from '../actions';
 
 const initialState ={
-    trainingType: 'alphabet',
+    trainingType: 'hello-world_9',
     trainingNumber: 1,
     showTrainingMain: false,
+    showTrainingFinished: false,
     showTrainingSettings: true
 };
 

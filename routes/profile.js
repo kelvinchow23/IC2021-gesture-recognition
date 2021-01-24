@@ -14,11 +14,22 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/:username', async (req, res) => {
+router.patch('/updateUserStatus/:username', async (req, res) => {        // Manual changing data
     try {
         const updatedProfile = await Profile.updateOne(
             {username: req.params.username}, 
-            {$set: {status: 'Not Enough Data for Training'}}
+            {$set: {status: req.body.status}}
+            );
+        res.json(updatedProfile);
+    } catch(err) {
+        res.json ({message:err});
+    }
+});
+router.patch('/:username', async (req, res) => {        // Manual changing data
+    try {
+        const updatedProfile = await Profile.updateOne(
+            {username: req.params.username}, 
+            {$set: {status: 'New User Profile Created'}}
             );
         res.json(updatedProfile);
     } catch(err) {

@@ -4,6 +4,7 @@ import TrainingMain from './training-subcomponents/training-main.component';
 import TrainingFinished from './training-subcomponents/training-finished.component';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {updateTrainingSettings} from '../actions';
 
 
  class TrainingList extends Component {
@@ -19,9 +20,9 @@ import {connect} from 'react-redux';
     }
 
     componentWillUnmount () {
-        this.props.updateTrainingSettings(this.props.trainData.trainingType, 
-            this.props.trainData.trainingNumber,
-            false, true);
+        this.props.updateTrainingSettings(this.props.trainingSettings.trainingType, 
+            this.props.trainingSettings.trainingNumber,
+            false, true, false);
     }
 
     render() {
@@ -39,9 +40,7 @@ import {connect} from 'react-redux';
                 <div>
                     {this.props.trainingSettings.showTrainingSettings && <TrainingSettings/>}
                     {this.props.trainingSettings.showTrainingMain && <TrainingMain/>}
-                    {(!this.props.trainingSettings.showTrainingFinished && 
-                     !this.props.trainingSettings.showTrainingSettings) &&    
-                     <TrainingFinished/>}
+                    {this.props.trainingSettings.showTrainingFinished && <TrainingFinished/>}
                 </div>
             
             )
@@ -56,6 +55,12 @@ import {connect} from 'react-redux';
     }
 }
 
+const mapDispatchToProps = () => {
+    return {
+        updateTrainingSettings,
+    }
+ }
 
-export default connect(mapStateToProps, null)(TrainingList)
+
+export default connect(mapStateToProps, mapDispatchToProps())(TrainingList)
 
