@@ -24,5 +24,14 @@ router.get('/getTrainingData/:username', async (req, res) => {
     }
 });
 
+router.get('/getRequestList', async (req, res) => {
+    try {
+        const profiles = await Profile.find({status: 'Model Training Requested'});
+        res.json(profiles);
+    } catch (err) {
+        res.json({message:err});
+    }
+});
+
 
 module.exports = router;
