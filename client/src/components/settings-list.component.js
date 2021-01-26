@@ -122,7 +122,7 @@ class SettingsList extends Component {
                         <p>You will be notified when your training model is ready to be uploaded to your device.
                         Please come back to this settings tab when it is ready.  Thank you for your patience.</p>
                     </Alert>
-                    <h3 className= 'mb-5'>Settings</h3>
+                    <h3>Settings</h3>
                     <CardGroup className = 'mb-5'>
                         <Card variant = {this.state.borderColour}>
                             <Card.Header>Training Status</Card.Header>

@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import appLogo from './images/mylogo.png';
+import appTextLogo from './images/flourish-text-logo-medium.png';
 import {connect} from 'react-redux';
 import {updateUserData} from '../actions';
 
@@ -26,9 +26,9 @@ import {updateUserData} from '../actions';
              <Navbar className='my-navbar mb-2' bg='dark' variant='dark'>
                 <Link to="/">
                     <Navbar.Brand><img 
-                        alt = 'App Logo'
-                        src ={appLogo}
-                        width = '25' height = '25'/> flourish
+                        alt = 'flourish logo'
+                        src ={appTextLogo}
+                        height = '25' />
                     </Navbar.Brand>
                 </Link>
                 <div className='my-nav-separator'>|</div>                
