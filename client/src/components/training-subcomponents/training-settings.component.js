@@ -29,7 +29,6 @@ import {updateTrainingSettings} from '../../actions';
             trainNum: e.target.value,
             time: this.state.trainTypeLength*e.target.value/12
         });
-        //this.props.onSelectNumberChange(e.target.value);
     }
 
     startTraining() {
@@ -40,34 +39,36 @@ import {updateTrainingSettings} from '../../actions';
         return (
             <div>
                 <h3>Training Configuration</h3>
-                <p>Layout: Start button, information, current settings: go to settings to change</p>
-                <p>Current configurations: Gesture actions: Trace letters.  Time limit. Training sets.</p>
-                <p>Pop-up warning message for selecting remote device on next page.</p>
-
-                <div className = 'row'>
-                    <label className = 'col-3'>
-                    Training Set:  <select value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
-                        <option  value='hello-world_9'>Hello World (9)</option>
-                        <option  value='alphabet_26'>Alphabet (26)</option>
-                        <option value='alphanumeric_36'>Alphanumeric (36)</option>
-                        <option value='custom_10'>Custom</option>
-                        <option value='negative_10'>Negative Data(10)</option>
-                    </select>
-                    </label>
-                    <label className = 'col-2'>
-                    # of Sets:  <select value={this.state.trainNum} onChange={this.onNumberChange.bind(this)}>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                        <option value='7'>7</option>
-                        <option value='10'>10</option>
-                    </select>
-                    </label>
-                    <p className='col-3'>Estimated Time: {this.state.time.toFixed(1)} min</p>
+                <p>Welcome to the training portal!</p>
+                <p>Before you begin, please set up your training session.  For the training set, please choose the same
+                training set for each session you do.</p>
+                <p>Please also make sure your gesture device is charged and the training device is nearby and connected to the computer's
+                USB port. After pressing the button below, you will be prompted to allow this website to receive signals from this device.</p>
+                <div className = 'row mt-5 text-center'>
+                    <h5 className = 'col-4'>Training Set: </h5>
+                    <h5 className = 'col-4'>Number of Sets: </h5>
+                    <h5 className = 'col-4'>Estimated Time: </h5>
                 </div>
-                <Button className='btn-primary col-2' onClick={this.startTraining.bind(this)}>Start training</Button>
+                <div className = 'row mb-5'>
+                        <select className ='col-2 offset-1' value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
+                            <option  value='hello-world_9'>Hello World (9)</option>
+                            <option  value='alphabet_26'>Alphabet (26)</option>
+                            <option value='alphanumeric_36'>Alphanumeric (36)</option>
+                            <option value='custom_10'>Custom</option>
+                            <option value='negative_10'>Negative Data(10)</option>
+                        </select>  
+                        <select className ='col-2 offset-2' value={this.state.trainNum} onChange={this.onNumberChange.bind(this)}>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                            <option value='7'>7</option>
+                            <option value='10'>10</option>
+                        </select> 
+                        <h5 className='col-2 offset-2 text-center'>{this.state.time.toFixed(1)} min</h5>
+                </div>                
+                <Button className='btn-primary col-4 offset-4' size ='lg' onClick={this.startTraining.bind(this)}>Start training</Button>
             </div>
         )
     }

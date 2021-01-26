@@ -8,7 +8,10 @@ import {connect} from 'react-redux';
             return(
                 <div>
                     <h3>Hello {this.props.userData.name}!</h3>
-                    <p> Please use the menu bar to navigate to stuff.</p>
+                    <p> Please select the training tab to begin a training session.</p>
+                    <p> For other settings such as requesting a new training model or uploading firmware to your device, please go to the training tab.</p>
+                    <p> For further information, please visit here </p>
+                    <p> To see the Getting Started instructions, please click here.</p>
                 </div>                
             )
         }

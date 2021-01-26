@@ -61,6 +61,7 @@
 
 h3 {
     text-transform: capitalize;
+    margin-bottom: 3rem;
 }
 
 .truncate-table-data {

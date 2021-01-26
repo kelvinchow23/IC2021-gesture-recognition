@@ -130,7 +130,7 @@ class SettingsList extends Component {
                             <Card.Body>
                                 <p>{this.state.message}</p>
                                 <p>Recommended data reps to go: <strong>{this.state.counter}</strong></p>
-                                <p>Approx. training time left: <strong>{this.state.counter/12} min</strong></p>
+                                <p>Approx. training time left: <strong>{(this.state.counter/12).toFixed(1)} min</strong></p>
                             </Card.Body>
                         </Card>
                         <Card>
