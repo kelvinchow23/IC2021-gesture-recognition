@@ -97,7 +97,7 @@ import {CSVLink} from 'react-csv';
     }
 
     getAllUsers() {
-        axios.get(window.location.href + '/getAllUsers')
+        axios.get(window.location.origin + '/profile/getAllUsers')
             .then(res => {
                 if (res.data) {
                     this.setState({profileData: res.data});
@@ -108,7 +108,7 @@ import {CSVLink} from 'react-csv';
     }
 
     getTrainingData(username) {
-        axios.get(window.location.href+'/getTrainingData/'+username)
+        axios.get(window.location.origin +'/api/getTrainingData/'+ username)
             .then(res => {
                 if (res.data) {
                     this.setState({

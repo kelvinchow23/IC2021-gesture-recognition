@@ -5,15 +5,6 @@ const Profile = require('../models/Profile');
 
 //ROUTES
 
-router.get('/getAllUsers', async (req, res) => {
-    try {
-        const profiles = await Profile.find();
-        res.json(profiles);
-    } catch (err) {
-        res.json({message:err});
-    }
-});
-
 
 router.get('/getTrainingData/:username', async (req, res) => {
     try {

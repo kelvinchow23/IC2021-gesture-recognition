@@ -12,7 +12,7 @@ const app = express();
 //Import Routes
 const trainingRoute = require('./routes/training');
 const profileRoute = require('./routes/profile');
-const adminRoute = require('./routes/admin');
+const apiRoute = require('./routes/api');
 
 app.use(express.json());
 app.use(cors({
@@ -32,11 +32,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./client/build/'));
 
-
 app.use('/training', trainingRoute);
 app.use('/profile', profileRoute);
-app.use('/admin', adminRoute);
-
+app.use('/api', apiRoute);
 
 //ROUTES
 app.get('/', (req, res) => {

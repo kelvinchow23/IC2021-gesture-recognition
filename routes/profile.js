@@ -64,6 +64,15 @@ router.get('/checkemail/:emailId', async (req, res) => {
     }
 });
 
+router.get('/getAllUsers', async (req, res) => {
+    try {
+        const profiles = await Profile.find();
+        res.json(profiles);
+    } catch (err) {
+        res.json({message:err});
+    }
+});
+
 router.post('/validatelogin', (req, res, next) => {
         passport.authenticate('local', (err, user) => {
             if (err) throw err;
