@@ -125,8 +125,8 @@ class SignupsList extends Component {
         } else {
             return (           
                 <Modal.Dialog>
-                <Modal.Header>
-                    <Modal.Title>Sign up</Modal.Title>
+                <Modal.Header className='background-primary'>
+                    <Modal.Title className='my-light-text'>Sign up</Modal.Title>
                 </Modal.Header>
                 <form onSubmit={this.onSubmit.bind(this)}>
                 <Modal.Body>

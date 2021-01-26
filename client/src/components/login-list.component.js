@@ -47,8 +47,8 @@ import {updateUserData} from '../actions';
             return (
                 <div>
                     <Modal.Dialog>
-                    <Modal.Header>
-                        <Modal.Title>Login</Modal.Title>
+                    <Modal.Header className='background-primary'>
+                        <Modal.Title className ='my-light-text'>Login</Modal.Title>
                     </Modal.Header>
                     <form onSubmit={this.onSubmit.bind(this)}>
                     <Modal.Body>

@@ -125,7 +125,7 @@ class SettingsList extends Component {
                     <h3>Settings</h3>
                     <CardGroup className = 'mb-5'>
                         <Card variant = {this.state.borderColour}>
-                            <Card.Header>Training Status</Card.Header>
+                            <Card.Header className ='background-primary my-light-text'>Training Status</Card.Header>
                             <Card.Title>{this.state.currentStatus}</Card.Title>
                             <Card.Body>
                                 <p>{this.state.message}</p>
@@ -134,7 +134,7 @@ class SettingsList extends Component {
                             </Card.Body>
                         </Card>
                         <Card>
-                            <Card.Header>Request A Training Model</Card.Header>
+                            <Card.Header className ='background-primary my-light-text'>Request A Training Model</Card.Header>
                             <Card.Body>
                                     <div className = 'mb-4'>
                                         <Button variant = {this.state.borderColour} className = 'col-10 offset-1' 
@@ -146,7 +146,7 @@ class SettingsList extends Component {
                             </Card.Body>
                         </Card>
                         <Card>
-                            <Card.Header>Begin Model Upload</Card.Header>
+                            <Card.Header className ='background-primary my-light-text'>Begin Model Upload</Card.Header>
                             <Card.Body>
                                     <div className = 'mb-4'>
                                         <Button variant = {this.state.borderColour} className = 'col-10 offset-1' 
@@ -159,8 +159,8 @@ class SettingsList extends Component {
                         </Card>
                     </CardGroup>
                     <Modal show = {this.state.showWarningModal} handleClose = {this.modalClose.bind(this)}>
-                        <Modal.Header>
-                            <Modal.Title>Warning</Modal.Title>
+                        <Modal.Header className ='background-primary'>
+                            <Modal.Title className ='my-light-text'>Warning</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             It is suggested that you collect more gesture data first to get a more accurate model. 

@@ -23,23 +23,23 @@ import {updateUserData} from '../actions';
 
      render() {
          return (
-             <Navbar className='my-navbar mb-2' bg='dark' variant='dark'>
+             <Navbar className='my-navbar mb-2'>
                 <Link to="/">
                     <Navbar.Brand><img 
                         alt = 'flourish logo'
                         src ={appTextLogo}
-                        height = '25' />
+                        height = '30' />
                     </Navbar.Brand>
                 </Link>
                 <div className='my-nav-separator'>|</div>                
-                <div className = "navbar-nav mr-auto" activekey={window.location.pathname}>
-                        <Link to ='/training' className="navbar-item nav-link">Training</Link>
+                <div className = "navbar-nav mr-auto">
+                        <Link to ='/training' className="navbar-item nav-link my-nav-text">Training</Link>
                         <div className='my-nav-separator'>|</div>                              
-                        <Link to ='/settings' className="navbar-item nav-link">Settings</Link>                
+                        <Link to ='/settings' className="navbar-item nav-link my-nav-text">Settings</Link>                
                 {(this.props.userData.username ==='admin') && 
                     <Fragment>
                         <div className='my-nav-separator'>|</div>               
-                        <Link to ='/admin' className="navbar-item nav-link">Administrator</Link>
+                        <Link to ='/admin' className="navbar-item nav-link my-nav-text">Administrator</Link>
                     </Fragment>
                 }
                 </div>
@@ -47,15 +47,15 @@ import {updateUserData} from '../actions';
                 {(this.props.userData.username === '') &&
                     <Fragment>
                     <Link to ='/login' className="navbar-item nav-link">
-                        <Button variant='light'>Login</Button>
+                        <Button variant='dark'  className='btn-primary'>Login</Button>
                     </Link>
                     </Fragment> 
                 }
                 {
                     (this.props.userData.username !== '') &&
                     <Fragment>
-                        <Link to ='/userprofile' className="navbar-item nav-link my-nav-separator">{this.props.userData.username}</Link>
-                        <Button variant='outline-light' onClick={this.logout.bind(this)}>Logout</Button>     
+                        <Link to ='/userprofile' className="navbar-item nav-link my-nav-text">{this.props.userData.username}</Link>
+                        <Button variant='outline-light' className='my-nav-text' onClick={this.logout.bind(this)}>Logout</Button>     
                     </Fragment>
                 }                        
                 </div>

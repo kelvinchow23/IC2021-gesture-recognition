@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.638bf705.chunk.css",
-    "main.js": "/static/js/main.5b8c9acf.chunk.js",
-    "main.js.map": "/static/js/main.5b8c9acf.chunk.js.map",
+    "main.css": "/static/css/main.126e05f1.chunk.css",
+    "main.js": "/static/js/main.2d6dc308.chunk.js",
+    "main.js.map": "/static/js/main.2d6dc308.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.98dfbce7.js",
     "runtime-main.js.map": "/static/js/runtime-main.98dfbce7.js.map",
     "static/css/2.20aa2d7b.chunk.css": "/static/css/2.20aa2d7b.chunk.css",
@@ -10,15 +10,15 @@
     "static/js/2.696d0948.chunk.js.map": "/static/js/2.696d0948.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.20aa2d7b.chunk.css.map": "/static/css/2.20aa2d7b.chunk.css.map",
-    "static/css/main.638bf705.chunk.css.map": "/static/css/main.638bf705.chunk.css.map",
+    "static/css/main.126e05f1.chunk.css.map": "/static/css/main.126e05f1.chunk.css.map",
     "static/js/2.696d0948.chunk.js.LICENSE.txt": "/static/js/2.696d0948.chunk.js.LICENSE.txt",
-    "static/media/flourish-text-logo-medium.ed08ea8f.png": "/static/media/flourish-text-logo-medium.ed08ea8f.png"
+    "static/media/flourish-text-logo-medium.51c5adc9.png": "/static/media/flourish-text-logo-medium.51c5adc9.png"
   },
   "entrypoints": [
     "static/js/runtime-main.98dfbce7.js",
     "static/css/2.20aa2d7b.chunk.css",
     "static/js/2.696d0948.chunk.js",
-    "static/css/main.638bf705.chunk.css",
-    "static/js/main.5b8c9acf.chunk.js"
+    "static/css/main.126e05f1.chunk.css",
+    "static/js/main.2d6dc308.chunk.js"
   ]
 }
