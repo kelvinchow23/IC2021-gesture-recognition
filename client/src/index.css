@@ -51,11 +51,11 @@
 .my-navbar {
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
-    background-color: lightcoral;
+    background-color: #343a40;
 }
 
 .my-nav-text {
-    color: rgb(0,131,140) !important;
+    color: rgb(0,155,155) !important;
     font-size: larger;
     font-weight: 500;    
 }
@@ -65,7 +65,7 @@
 }
 
 .my-nav-separator {
-    color: rgb(0,131,140);
+    color: rgb(0,155,155);
     padding: 0.5rem 0rem;
     text-transform: uppercase;
     font-size: large;
@@ -89,19 +89,13 @@ h3 {
     padding: 1rem;
 }
 .btn-primary, .background-primary {
-    background-color: rgb(0,131,140);
-    border-color: rgb(0,131,140);
+    background-color: rgb(0,155,155);
+    border-color: rgb(0,155,155);
 }
 
 .my-btn-primary-outline {
-    border-color: rgb(0,131,140)
+    border-color:rgb(0,155,155);
 }
-
-.btn-danger, .bg-secondary {
-    background-color: lightcoral;
-    border-color: lightcoral;
-}
-
 
 .card-header {
     text-align: center;
