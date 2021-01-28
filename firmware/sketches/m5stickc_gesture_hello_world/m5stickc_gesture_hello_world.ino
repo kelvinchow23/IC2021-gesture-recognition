@@ -195,9 +195,9 @@ void setup() {
   
   // Register peer
   esp_now_peer_info_t peerInfo;
-  memcpy(peerInfo.peer_addr, broadcastAddressM5StickC, 6);
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
+  memcpy(peerInfo.peer_addr, broadcastAddressM5StickC, 6);
   
   // Add peer        
   if (esp_now_add_peer(&peerInfo) != ESP_OK){
@@ -285,7 +285,7 @@ void loop() {
 
    if (digitalRead(btnPin) == LOW){    // Check for button press to switch states
       joyState++;
-      sendJoystickState();    // Only communicate with other ESP32 device for training mode   
+      sendJoystickState();    // Only communicate with other ESP32 device for training mode   m
       delay(100);             // Debounce 
     }
      
@@ -309,6 +309,7 @@ void loop() {
     should_clear_buffer = gesture_index < 9;
     // Produce an output
     HandleOutputKeyboard(keyboard, error_reporter, gesture_index);
+  
   }
   else {    // joyState == 1, training mode 
        myData.aX = f[381];
