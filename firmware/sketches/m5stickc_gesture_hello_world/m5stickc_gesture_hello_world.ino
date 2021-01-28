@@ -21,10 +21,6 @@
 uint8_t broadcastAddressM5StickC[] = {0x50, 0x02, 0x91, 0x8A, 0x63, 0xC0}; // Sample MAC address
 
 #include <TensorFlowLite_ESP32.h>
-#include <M5StickC.h>
-#include <BleCombo.h>
-#include <esp_now.h>
-#include <WiFi.h>
 
 #include "main_functions.h"
 #include "accelerometer_handler.h"
@@ -37,6 +33,11 @@ uint8_t broadcastAddressM5StickC[] = {0x50, 0x02, 0x91, 0x8A, 0x63, 0xC0}; // Sa
 #include "tensorflow/lite/experimental/micro/micro_mutable_op_resolver.h"
 #include "tensorflow/lite/schema/schema_generated.h"
 #include "tensorflow/lite/version.h"
+
+#include <M5StickC.h>
+#include <BleCombo.h>
+#include <esp_now.h>
+#include <WiFi.h>
 
 // Globals, used for compatibility with Arduino-style sketches.
 namespace {

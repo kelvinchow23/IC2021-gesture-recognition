@@ -18,7 +18,7 @@
 
 int begin_index = 0;
 
-float save_data[480] = {0.0};
+float save_data[600] = {0.0};
 bool pending_initial_data = true;
 long last_sample_millis = 0;
 
@@ -41,11 +41,11 @@ static bool UpdateData() {
   float accZ = 0.000F;
   M5.IMU.getAccelData(&accX, &accY, &accZ);
 
-  save_data[begin_index++] = accX;
-  save_data[begin_index++] = accY;
-  save_data[begin_index++] = accZ;
+  save_data[begin_index++] = accX*1000;
+  save_data[begin_index++] = accY*1000;
+  save_data[begin_index++] = accZ*1000;
 
-  if (begin_index >= 480) {
+  if (begin_index >= 600) {
     begin_index = 0;
   }
   new_data = true;
@@ -56,7 +56,7 @@ static bool UpdateData() {
 bool ReadAccelerometer(tflite::ErrorReporter* error_reporter, float* input,
                        int length, bool reset_buffer) {
   if (reset_buffer) {
-    memset(save_data, 0, 480 * sizeof(float));
+    memset(save_data, 0, 600 * sizeof(float));
     begin_index = 0;
     pending_initial_data = true;
   }
@@ -65,7 +65,7 @@ bool ReadAccelerometer(tflite::ErrorReporter* error_reporter, float* input,
     return false;
   }
 
-  if (pending_initial_data && begin_index >= 160) {
+  if (pending_initial_data && begin_index >= 200) {
     pending_initial_data = false;
   }
 
@@ -76,7 +76,7 @@ bool ReadAccelerometer(tflite::ErrorReporter* error_reporter, float* input,
   for (int i = 0; i < length; ++i) {
     int ring_array_index = begin_index + i - length;
     if (ring_array_index < 0) {
-      ring_array_index += 480;
+      ring_array_index += 600;
     }
     input[i] = save_data[ring_array_index];
   }

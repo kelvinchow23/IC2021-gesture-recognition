@@ -3,7 +3,7 @@
 #include <WiFi.h>
 #include <ArduinoJson.h>
 
-#define btnPin 37   // Change to 26 for custom gesture remote
+#define btnPin 37   
 
 // Variables to change for different configurations
 const int numRemotes = 1; // number of gesture control remotes
