@@ -35,6 +35,10 @@
     padding-left: 0px;
 }
 
+.progress-bar {
+    background-color: rgb(0,155,155);
+}
+
 .my-big-button {
     padding: 1.5rem 0rem;
     font-size: 2rem;

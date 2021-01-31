@@ -4,7 +4,7 @@ pre#include <ArduinoJson.h>
 #define COUNTER_MAX 60
 #define TIME_DELAY 50
 
-bool external_btn = true;
+bool external_btn = false;
 DynamicJsonDocument doc(4200);
 JsonArray accelData;
 
@@ -37,7 +37,7 @@ void setup() {
 
 void loop() {
   if (external_btn) {
-    if (digitalRead(BUTTON_PIN) == LOW) {
+    if (digitalRead(BUTTON_PIN) == HIGH) {
       buttonPressed();
     }
   }
