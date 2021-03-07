@@ -106,3 +106,24 @@ h3 {
     font-size: 1.25rem;
     font-weight: bold;
 }
+
+.circle {
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    padding: 1rem;
+    background: #fff;
+    border: 0.3rem solid rgb(0,131,140);
+    color: rgb(0,131,140);
+    text-align: center;
+    font: 2rem Arial, sans-serif;
+    vertical-align: middle;
+  }
+
+  .nice-text {
+      font-size: 2rem;
+      padding: 1rem;
+      font-family: 'Arial';
+      color: rgb(0,131,140);
+      vertical-align: middle;
+  }
