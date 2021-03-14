@@ -16,7 +16,7 @@ class TrainingFinished extends Component {
     repeatTraining() {
         this.props.updateTrainingSettings(this.props.trainData.trainingType, 
                                         this.props.trainData.trainingNumber,
-                                        true, false, false);
+                                        true, false, false, false);
     }
 
     redirectSettings() {

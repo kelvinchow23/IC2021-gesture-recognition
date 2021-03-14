@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TrainingSettings from './training-subcomponents/training-settings.component';
 import TrainingMain from './training-subcomponents/training-main.component';
+import TrainingChecklist from './training-subcomponents/training-checklist.component';
 import TrainingFinished from './training-subcomponents/training-finished.component';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -22,10 +23,11 @@ import {updateTrainingSettings} from '../actions';
     componentWillUnmount () {
         this.props.updateTrainingSettings(this.props.trainingSettings.trainingType, 
             this.props.trainingSettings.trainingNumber,
-            false, true, false);
+            false, false, false, true);
     }
 
     render() {
+        /*
         if (this.props.userData.username === '') {
             this.redirecttoLogin();
             return (
@@ -45,6 +47,15 @@ import {updateTrainingSettings} from '../actions';
             
             )
         }
+        */
+       return (
+        <div>
+            {this.props.trainingSettings.showTrainingChecklist && <TrainingChecklist/>}
+            {this.props.trainingSettings.showTrainingSettings && <TrainingSettings/>}
+            {this.props.trainingSettings.showTrainingMain && <TrainingMain/>}
+            {this.props.trainingSettings.showTrainingFinished && <TrainingFinished/>}
+        </div> 
+       )
     }
  }
 

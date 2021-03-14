@@ -35,7 +35,11 @@ import {updateUserData} from '../actions';
                 <div className = "navbar-nav mr-auto">
                         <Link to ='/training' className="navbar-item nav-link my-nav-text">Training</Link>
                         <div className='my-nav-separator'>|</div>                              
-                        <Link to ='/settings' className="navbar-item nav-link my-nav-text">Settings</Link>                
+                        <Link to ='/settings' className="navbar-item nav-link my-nav-text">Settings</Link>
+                        <div className='my-nav-separator'>|</div>                              
+                        <Link to ='/marketplace' className="navbar-item nav-link my-nav-text">Marketplace</Link>
+                        <div className='my-nav-separator'>|</div>                              
+                        <Link to ='/community' className="navbar-item nav-link my-nav-text">Community</Link>                
                 {(this.props.userData.username ==='admin') && 
                     <Fragment>
                         <div className='my-nav-separator'>|</div>               

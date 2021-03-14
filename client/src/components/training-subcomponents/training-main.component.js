@@ -121,7 +121,7 @@ class TrainingMain extends Component {
         })
         this.props.updateTrainingSettings(this.props.trainData.trainingType, 
             this.props.trainData.trainingNumber,
-            false, false, true);
+            false, false, true, false);
     }
 
     async componentDidMount() {  

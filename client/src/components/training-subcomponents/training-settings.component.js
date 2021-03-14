@@ -32,24 +32,25 @@ import {updateTrainingSettings} from '../../actions';
     }
 
     startTraining() {
-        this.props.updateTrainingSettings(this.state.trainType, this.state.trainNum, true, false, false);
+        this.props.updateTrainingSettings(this.state.trainType, this.state.trainNum, true, false, false, false);
+    }
+
+    doNothing() {
+        alert('TODO: add this function later.');
     }
 
     render() {
         return (
             <div>
-                <h3>Training Configuration</h3>
-                <p>Welcome to the training portal!</p>
-                <p>Before you begin, please set up your training session.  For the training set, please choose the same
-                training set for each session you do.</p>
-                <p>Please also make sure your gesture device is charged and the training device is nearby and connected to the computer's
-                USB port. After pressing the button below, you will be prompted to allow this website to receive signals from this device.</p>
+                <h3>Wonderful! Please setup today's training session.</h3>
                 <div className = 'row mt-5 text-center'>
-                    <h5 className = 'col-4'>Training Set: </h5>
-                    <h5 className = 'col-4'>Number of Sets: </h5>
-                    <h5 className = 'col-4'>Estimated Time: </h5>
+                    <h5 className = 'col-3'>Last Session's Settings: </h5>
+                    <h5 className = 'col-3'>Training Set: </h5>
+                    <h5 className = 'col-3'>Number of Sets: </h5>
+                    <h5 className = 'col-3'>Estimated Time: </h5>
                 </div>
                 <div className = 'row mb-5'>
+                        <Button className='btn-primary col-2 my-button-gutter-half' size ='med' onClick={this.doNothing.bind(this)}>Load Now</Button>
                         <select className ='col-2 offset-1' value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
                             <option  value='hello-world_9'>Hello World (9)</option>
                             <option  value='alphabet_26'>Alphabet (26)</option>
@@ -60,7 +61,7 @@ import {updateTrainingSettings} from '../../actions';
                             <option value='custom_10'>Custom</option>
                             <option value='negative_10'>Negative Data(10)</option>
                         </select>  
-                        <select className ='col-2 offset-2' value={this.state.trainNum} onChange={this.onNumberChange.bind(this)}>
+                        <select className ='col-2 offset-1' value={this.state.trainNum} onChange={this.onNumberChange.bind(this)}>
                             <option value='1'>1</option>
                             <option value='2'>2</option>
                             <option value='3'>3</option>
@@ -69,9 +70,9 @@ import {updateTrainingSettings} from '../../actions';
                             <option value='7'>7</option>
                             <option value='10'>10</option>
                         </select> 
-                        <h5 className='col-2 offset-2 text-center'>{this.state.time.toFixed(1)} min</h5>
+                        <h5 className='col-2 text-center offset-1'>{this.state.time.toFixed(1)} min</h5>
                 </div>                
-                <Button className='btn-primary col-4 offset-4' size ='lg' onClick={this.startTraining.bind(this)}>Start training</Button>
+                <Button className='btn-primary col-4 offset-4 mb-3' size ='lg' onClick={this.startTraining.bind(this)}>Start Training!</Button>
             </div>
         )
     }

@@ -5,6 +5,8 @@ import MyNavbar from "./components/my-navbar.component";
 import DashboardList from "./components/dashboard-list.component";
 import TrainingList from "./components/training-list.component";
 import SettingsList from "./components/settings-list.component";
+import MarketplaceList from "./components/marketplace-list.component";
+import CommunityList from "./components/community-list.component";
 import LoginList from "./components/login-list.component";
 import SignupList from "./components/signup-list.component";
 import AdminList from "./components/admin-list.component";
@@ -19,6 +21,8 @@ import AdminList from "./components/admin-list.component";
                     <Route path ="/" exact component={DashboardList} />
                     <Route path ="/training" exact component={TrainingList} />
                     <Route path ="/settings" exact component={SettingsList} />
+                    <Route path ="/marketplace" exact component={MarketplaceList} />
+                    <Route path ="/community" exact component={CommunityList} />
                     <Route path ="/admin" exact component={AdminList} />
                     <Route path ="/login" exact component={LoginList} />
                     <Route path ="/signup" exact component={SignupList} />

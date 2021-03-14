@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Image from 'react-bootstrap/image';
 import Card from 'react-bootstrap/card';
+import Alert from 'react-bootstrap/Alert';
 import flourishLogo from './images/flourish-logo-circle-large.png';
 import gestureWrist from './images/gesture-wrist.jpg';
 import gestureLeg from './images/gesture-leg.jpg';
@@ -13,20 +14,26 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
  class DashboardList extends Component {
-    render() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loggedIn: false,
+        };
+    }
+
+    componentDidMount() {
         if (this.props.userData.name !== '') {
-            return(
-                <div>
-                    <h3>Hello {this.props.userData.name}!</h3>
-                    <p> Please select the training tab to begin a training session.</p>
-                    <p> For other settings such as requesting a new training model or uploading firmware to your device, please go to the training tab.</p>
-                    <p> For further information, please visit here </p>
-                    <p> To see the Getting Started instructions, please click here.</p>
-                </div>                
-            )
+            this.setState({loggedIn: true});
         }
+    }
+
+    render() {
         return (
             <div>  
+                <Alert show={this.state.loggedIn} variant ='success' onClose = {() => this.setState({loggedIn: false})} dismissible>
+                        <Alert.Heading>Hello {this.props.userData.name}!</Alert.Heading>
+                        <p>Welcome to the flourish web portal.  Please select the training tab to start today's training session!</p>
+                </Alert>
                 <div className='row'>
                     <div className='col-9'>
                         <h2> flour•ish <i>(noun)</i></h2>
@@ -144,7 +151,6 @@ import Tooltip from 'react-bootstrap/Tooltip';
                 control electronic devices with custom user-defined gestures.  To use this application,
                 you will need two <a href = 'https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/K016-D/10492136'>M5StickC units</a>. 
                </p>
-                <p>Please login to begin.</p>
             </div>
         )
     }

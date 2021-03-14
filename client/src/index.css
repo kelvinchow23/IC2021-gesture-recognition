@@ -52,6 +52,10 @@
     margin-left: 2%;
 }
 
+.my-button-gutter-half {
+    margin-left: 4.17%;
+}
+
 .my-navbar {
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;

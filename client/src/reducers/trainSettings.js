@@ -5,7 +5,8 @@ const initialState ={
     trainingNumber: 1,
     showTrainingMain: false,
     showTrainingFinished: false,
-    showTrainingSettings: true
+    showTrainingSettings: false,
+    showTrainingChecklist: true
 };
 
 export default function trainingSettings(state = initialState, action) {
