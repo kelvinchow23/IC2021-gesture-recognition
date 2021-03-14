@@ -7,6 +7,8 @@ import gestureWrist from './images/gesture-wrist.jpg';
 import gestureLeg from './images/gesture-leg.jpg';
 import tflogo from './images/tensorflow.png';
 import personOutline from './images/person-outline-2.png';
+import trainingGif from './images/trainingStickFigure.gif';
+import flourishGif from './images/flourishDemo.gif';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
@@ -111,20 +113,22 @@ import Tooltip from 'react-bootstrap/Tooltip';
                             </Card>                        
                     </div>
                     <div className='col-3 offset-1'>
-                        <div className='circle'>2
+                        <div className='circle mb-1'>2
                             <span className='faux-white-text'>__</span>
                             <span className='colourful'>TRAIN</span>
                             <span className='faux-white-text'>____</span>
                             <span className='colourful'>➤</span>
                         </div>
+                        <Image src={trainingGif} height='350rem'/>
                     </div>
                     <div className='col-3 offset-1'>
-                        <div className='circle'>3
+                        <div className='circle mb-2'>3
                             <span className='faux-white-text'>__</span>
                             <span className='colourful'>FLOURISH</span>
                             <span className='faux-white-text'>___</span>
                             <span className='faux-white-text'>➤</span>
                         </div>
+                        <Image src={flourishGif} rounded height='340rem'/>
                     </div>
                 </div>
 

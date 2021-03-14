@@ -18,7 +18,7 @@
 
 //Change to MAC address of your device
 //uint8_t broadcastAddressM5StickC[] = {0x, 0x, 0x, 0x, 0x, 0x}; 
- uint8_t broadcastAddressM5StickC[] = {0x50, 0x02, 0x91, 0x8C, 0xDC, 0xB8}; // Sample MAC address
+ uint8_t broadcastAddressM5StickC[] = {0x50, 0x02, 0x91, 0x8A, 0x63, 0xC0}; // Sample MAC address
 
 #include <TensorFlowLite_ESP32.h>
 

@@ -53,7 +53,10 @@ import {updateTrainingSettings} from '../../actions';
                         <select className ='col-2 offset-1' value={this.state.trainType} onChange={this.onTypeChange.bind(this)}>
                             <option  value='hello-world_9'>Hello World (9)</option>
                             <option  value='alphabet_26'>Alphabet (26)</option>
+                            <option  value='alphabet+5_31'>Alphabet+5 (31)</option>
+                            <option  value='gesture_4'>Gestures (4)</option>
                             <option value='alphanumeric_36'>Alphanumeric (36)</option>
+                            <option value='space_1'>Space (1)</option>
                             <option value='custom_10'>Custom</option>
                             <option value='negative_10'>Negative Data(10)</option>
                         </select>  

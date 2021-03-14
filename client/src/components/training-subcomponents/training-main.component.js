@@ -100,7 +100,7 @@ class TrainingMain extends Component {
                 showProgressBar: true,
                 showInstructionText1: false,
                 instructionText1: '',
-                instructionText2: 'NEXT LETTER:',
+                instructionText2: 'NEXT GESTURE:',
                 letter: this.state.letterlist[this.state.counter-1],
                 counter: this.state.counter -1,
                 progress: 100*(this.state.letterlist.length-this.state.counter)/this.state.letterlist.length,
@@ -134,6 +134,14 @@ class TrainingMain extends Component {
         } else if (trainType === 'alphabet_26') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.repeat(trainNum).split('')
             .sort(function(){return 0.5-Math.random()});
+        }  else if (trainType === 'gesture_4') {
+            arr = ['HI', ':)', 'FOOD', 'EW'];
+        }  else if (trainType === 'alphabet+5_31') {
+            arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_0123'.repeat(trainNum).split('')
+            .sort(function(){return 0.5-Math.random()});
+        } else if (trainType === 'space_1') {
+            arr = '_'.repeat(trainNum).split('')
+            .sort(function(){return 0.5-Math.random()}); 
         } else if (trainType ==='alphanumeric_36') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.repeat(trainNum).split('')
             .sort(function(){return 0.5-Math.random()});
