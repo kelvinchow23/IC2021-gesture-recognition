@@ -97,34 +97,34 @@ void HandleOutputKeyboard(BleComboKeyboard keyboard, tflite::ErrorReporter* erro
     error_reporter->Report("Type Z:");
     keyboard.print("Z");
   }   else if (kind == 26) {
-    error_reporter->Report("Type 0:");
+    error_reporter->Report("Type SPACE");
     keyboard.print("0");
   }   else if (kind == 27) {
-    error_reporter->Report("Type 1:");
+    error_reporter->Report("Type WAVE:");
     keyboard.print("1");
   }   else if (kind == 28) {
-    error_reporter->Report("Type 2:");
+    error_reporter->Report("Type HAPPY:");
     keyboard.print("2");
   }   else if (kind == 29) {
-    error_reporter->Report("Type 3:");
-    keyboard.print("3");
+    error_reporter->Report("Type BURRITO:");
+    keyboard.print("BURRITO");
   }   else if (kind == 30) {
-    error_reporter->Report("Type 4:");
-    keyboard.print("4");
-  }   else if (kind == 31) {
+    error_reporter->Report("Type CILANTRO:");
+    keyboard.print("CILANTRO");
+  } else if (kind == 31) {
     error_reporter->Report("Type 5:");
-    keyboard.print("5");
-  }   else if (kind == 32) {
+    keyboard.print("4");
+  }  else if (kind == 32) {
     error_reporter->Report("Type 6:");
-    keyboard.print("6");
-  }   else if (kind == 33) {
+    keyboard.print("4");
+  }  else if (kind == 33) {
     error_reporter->Report("Type 7:");
-    keyboard.print("7");
-  }   else if (kind == 34) {
+    keyboard.print("4");
+  }  else if (kind == 34) {
     error_reporter->Report("Type 8:");
-    keyboard.print("8");
-  }   else if (kind == 35) {
+    keyboard.print("4");
+  }  else if (kind == 35) {
     error_reporter->Report("Type 9:");
-    keyboard.print("9");
-  }   
+    keyboard.print("4");
+  } 
 }

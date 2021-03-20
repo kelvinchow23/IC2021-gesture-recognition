@@ -71,7 +71,9 @@ import {updateTrainingSettings} from '../../actions';
                             <option value='10'>10</option>
                         </select> 
                         <h5 className='col-2 text-center offset-1'>{this.state.time.toFixed(1)} min</h5>
-                </div>                
+                </div> 
+                <p> Once you hit the <strong>Start Training</strong> button below, you will be asked to allow this website permission to connect to a serial port device.
+                If it says there are no connected devices avaiable, please connect the USB dongle to your computer and select the <strong>Connect</strong> button to continue.</p>               
                 <Button className='btn-primary col-4 offset-4 mb-3' size ='lg' onClick={this.startTraining.bind(this)}>Start Training!</Button>
             </div>
         )

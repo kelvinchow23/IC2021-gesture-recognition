@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Image from 'react-bootstrap/image';
+import Button from 'react-bootstrap/button';
 import Card from 'react-bootstrap/card';
 import Alert from 'react-bootstrap/Alert';
+import {Link} from 'react-router-dom';
 import flourishLogo from './images/flourish-logo-circle-large.png';
-import gestureWrist from './images/gesture-wrist.jpg';
-import gestureLeg from './images/gesture-leg.jpg';
-import tflogo from './images/tensorflow.png';
 import personOutline from './images/person-outline-2.png';
 import trainingGif from './images/trainingStickFigure.gif';
 import flourishGif from './images/flourishDemo.gif';
@@ -34,6 +33,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
                         <Alert.Heading>Hello {this.props.userData.name}!</Alert.Heading>
                         <p>Welcome to the flourish web portal.  Please select the training tab to start today's training session!</p>
                 </Alert>
+                <h3>Welcome to the Flourish Portal!</h3>
                 <div className='row'>
                     <div className='col-9'>
                         <h2> flour•ish <i>(noun)</i></h2>
@@ -48,15 +48,16 @@ import Tooltip from 'react-bootstrap/Tooltip';
                     </div>
                 </div>     
                 <h3>The Process</h3>
-                <div className='row mb-5'>
+                <div className='row mb-3'>
                     <div className='col-4'>
-                        <div className='circle'>1
+                        <div className='circle mb-2'>1
                             <span className='faux-white-text'>__</span>
                             <span className='colourful'>CONFIGURE</span>
-                            <span className='faux-white-text'>____</span>
+                            <span className='faux-white-text'>__</span>
                             <span className='colourful'>➤</span>
                         </div>
-                            <Card className='person-container'>
+                        <div className='custom-border'>
+                            <Card className='person-container mb-2'>
                                 <Card.Img src={personOutline} alt='person outline' />
                                 <Card.ImgOverlay>
                                 <OverlayTrigger placement='right' overlay={
@@ -117,40 +118,51 @@ import Tooltip from 'react-bootstrap/Tooltip';
                                 </OverlayTrigger>                                                                
                                     <div className='dot-computer'></div>
                                 </Card.ImgOverlay>
-                            </Card>                        
+                            </Card>  
+                            <p className='mb-4'>Hover over the pictures for different possible configurations and uses of flourish. </p>  
+                            <div className='row mb-2'>
+                                <div className='col-6'>
+                                    <strong>Not sure what you need to start?</strong>
+                                </div>
+                                <Link to ='/marketplace'><Button variant='primary'>MARKETPLACE</Button></Link>
+                            </div>  
+                            <div className='row'>
+                                <div className='col-6'>
+                                    <strong>Do you already have a device?</strong>
+                                </div>
+                                <Link to ='/settings'><Button variant='primary' >GET SETUP!</Button></Link>
+                            </div> 
+                        </div>                   
                     </div>
-                    <div className='col-3 offset-1'>
-                        <div className='circle mb-1'>2
-                            <span className='faux-white-text'>__</span>
+                    <div className='col-4'>
+                        <div className='circle mb-2'>2
+                            <span className='faux-white-text'>_____</span>
                             <span className='colourful'>TRAIN</span>
-                            <span className='faux-white-text'>____</span>
+                            <span className='faux-white-text'>___</span>
                             <span className='colourful'>➤</span>
                         </div>
-                        <Image src={trainingGif} height='350rem'/>
+                        <div className='custom-border'>
+                        <Image src={trainingGif} height='325rem' className='mb-2'/>
+                        <p>With your device and application planned, the next step is to practice 
+                        making gestures in this training portal.  Ready to begin?</p>    
+                        <Link to ='/training'><Button variant='primary' className='col-8 offset-2'>LET'S TRAIN!</Button></Link>
+                        </div>              
                     </div>
-                    <div className='col-3 offset-1'>
+                    <div className='col-4'>
                         <div className='circle mb-2'>3
-                            <span className='faux-white-text'>__</span>
+                            <span className='faux-white-text'>____</span>
                             <span className='colourful'>FLOURISH</span>
                             <span className='faux-white-text'>___</span>
                             <span className='faux-white-text'>➤</span>
                         </div>
-                        <Image src={flourishGif} rounded height='340rem'/>
+                        <div className='custom-border'>
+                        <Image src={flourishGif} rounded height='325rem' className='mb-4'/>
+                        <p>After training, we will prepare a personalized software update so that
+                        your device can be used to interact with digital devices using your unique gestures.</p>    
+                        </div>                  
+
                     </div>
-                </div>
-
-                <h3>The Technology</h3>
-
-                <div className='row'>
-                    <Image src={gestureWrist} className='col-3 offset-1'  rounded/>
-                    <Image src={gestureLeg} className='col-2'  rounded/>
-                    <Image src={tflogo} className='col-3 offset-2' />              
-                </div>
-                
-                <p>Welcome to flourish portal.  This application allows unique individuals to 
-                control electronic devices with custom user-defined gestures.  To use this application,
-                you will need two <a href = 'https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/K016-D/10492136'>M5StickC units</a>. 
-               </p>
+                </div>                
             </div>
         )
     }

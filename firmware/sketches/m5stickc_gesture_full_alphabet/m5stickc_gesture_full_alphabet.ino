@@ -303,7 +303,7 @@ void loop() {
     //sprintf(s, "%+6.0f : %+6.0f : %+6.0f || H %3.2f : E %3.2f : L %3.2f : O %3.2f : W %3.2f : R %3.2f : D %3.2f : U %3.2f : S %3.2f : N %3.2f",  \
               f[381], f[382], f[383], p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9]);
               
-    sprintf(s, "%+6.2f : %+6.2f : %+6.2f || A %3.2f : B %3.2f : C %3.2f : D %3.2f : E %3.2f : F %3.2f : G %3.2f : H %3.2f : I %3.2f : J %3.2f : K %3.2f : L %3.2f : M %3.2f : N %3.2f : O %3.2f : P %3.2f : Q %3.2f : R %3.2f : S %3.2f : T %3.2f : U %3.2f : V %3.2f : W %3.2f : X %3.2f : Y %3.2f : Z %3.2f",  \
+    sprintf(s, "%+6.0f : %+6.0f : %+6.0f || A %3.2f : B %3.2f : C %3.2f : D %3.2f : E %3.2f : F %3.2f : G %3.2f : H %3.2f : I %3.2f : J %3.2f : K %3.2f : L %3.2f : M %3.2f : N %3.2f : O %3.2f : P %3.2f : Q %3.2f : R %3.2f : S %3.2f : T %3.2f : U %3.2f : V %3.2f : W %3.2f : X %3.2f : Y %3.2f : Z %3.2f",  \
       f[381], f[382], f[383], p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18], p[19], p[20], p[21], p[22], p[23], p[24], p[25]);
     error_reporter->Report(s);
     // Analyze the results to obtain a prediction

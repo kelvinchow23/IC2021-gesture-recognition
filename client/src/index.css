@@ -18,6 +18,15 @@
     text-align: center;
 }
 
+.custom-border {
+    border-radius: 10px;
+    border-width: 3px;
+    border: rgb(0,131,140);
+    padding: 1rem;
+    border-style: solid;
+    height: 32rem;
+}
+
 .ghost-textbox {
     float: right;
     opacity: 0;

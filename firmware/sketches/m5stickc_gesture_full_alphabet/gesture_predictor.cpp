@@ -30,7 +30,7 @@ int PredictGesture(float* output) {
   // Find whichever output has a probability > 0.8 (they sum to 1)
   int this_predict = -1;
   for (int i = 0; i < MY_NUM_OUTPUTS; i++) {
-    if (output[i] > 0.8) this_predict = i;
+    if (output[i] > 0.51) this_predict = i;
   }
   // No gesture was detected above the threshold
   if (this_predict == -1) {
