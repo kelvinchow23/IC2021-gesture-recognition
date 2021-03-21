@@ -28,10 +28,9 @@ import {updateUserData} from '../actions';
                this.props.updateUserData(res.data.name, res.data.username, res.data.status); 
                if (res.data.username === undefined) {
                 <Alert>
-                        <Alert.Heading>Hello {this.props.userData.name}!</Alert.Heading>
-                        <p>Welcome to the flourish web portal.  Please select the training tab to start today's training session!</p>
+                        <Alert.Heading>User Not Found</Alert.Heading>
+                        <p>Please check user info and try again or signup as a new user, thanks.</p>
                 </Alert>
-                   alert('User not found.  Please check user info and try again or signup as a new user.')
                } else {
                 this.setState({redirectHome: true});
                }

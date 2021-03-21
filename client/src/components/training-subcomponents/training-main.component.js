@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import Image from 'react-bootstrap/image';
 import {connect} from 'react-redux';
 import {updateTrainingSettings} from '../../actions';
+import offlinetotrain from '../images/offlinetotrain.png';
+import trainingGreen from '../images/training green.png';
+
 
 let currentdate = new Date();
 let utf8decoder = new TextDecoder();
@@ -17,13 +21,14 @@ class TrainingMain extends Component {
             letterlist: '',
             logdata: '',
             counter: -1,
-            instructionText1: 'Before starting training, make sure both devices are in TRAINING MODE.',
-            instructionText2: 'Please hit the button on the training device to check for a serial connection.',
+            instructionText: 'Instructions:',
+            showInstructions: false,
+            showSplash: true,
             showProgressBar: false,
             progress: 0,
-            showInstructionText1: true,
             showFinishedScreen: false,
             textColour: '',
+            showPictures: true
         }
     }    
 
@@ -76,7 +81,7 @@ class TrainingMain extends Component {
         } else if (this.state.counter !== -1) {      // Test that the device can communicate with the web app.  On first load, setup stuff.
             if (key==='A') {
                 this.setState({
-                    instructionText2: 'GO!',
+                    instructionText: 'GO!',
                     textColour: 'green-text'
                 });    
             } else if(key==='Z') {
@@ -90,7 +95,9 @@ class TrainingMain extends Component {
     initializeTraining() {
         this.getTrainingCount(this.props.userData.username);
         this.setState({
-            instructionText2: 'Device Connected! Please wait a moment...',
+            showInstructions: true,
+            showSplash: false,
+            instructionText: 'Device Connected! Please wait a moment...',
         });
     }
 
@@ -98,9 +105,7 @@ class TrainingMain extends Component {
         if (this.state.counter !== 0) {
             this.setState({
                 showProgressBar: true,
-                showInstructionText1: false,
-                instructionText1: '',
-                instructionText2: 'NEXT GESTURE:',
+                instructionText: 'NEXT GESTURE:',
                 letter: this.state.letterlist[this.state.counter-1],
                 counter: this.state.counter -1,
                 progress: 100*(this.state.letterlist.length-this.state.counter)/this.state.letterlist.length,
@@ -115,7 +120,7 @@ class TrainingMain extends Component {
 
         this.setState({
             showProgressBar: false,
-            instructionText2: 'FINISHED!!!',
+            instructionText: 'FINISHED!!!',
             letter: '',
             counter: this.state.counter -1
         })
@@ -153,7 +158,7 @@ class TrainingMain extends Component {
         } 
         this.setState({
             letterlist: arr,
-            counter: arr.length
+            counter: arr.length,
         });
         console.log(navigator);
 
@@ -186,10 +191,6 @@ class TrainingMain extends Component {
     render() {
         return (     
             <div>
-                {this.state.showInstructionText1 && 
-                    <div className='training-instructions-1'>
-                    {this.state.instructionText1}</div>
-                }
                 {this.state.showProgressBar && 
                 <div className='row'>
                     <ProgressBar className='col-9 offset-1 my-progress-bar' now={this.state.progress} />
@@ -197,9 +198,25 @@ class TrainingMain extends Component {
                 </div>
                 }
                 <br/>
-                <div className='training-instructions-2'>
-                    {this.state.instructionText2}                
-                </div>
+                {this.state.showInstructions &&                
+                    <div className='training-instructions-2'>
+                        {this.state.instructionText}                
+                    </div>
+                }
+                {this.state.showSplash && 
+                    <div className='show-splash'>
+                    <h3>Last set of instructions (we promise!):</h3>
+                    <p>Please hit the button on your gesture device until the USB dongle displays the message: <strong>TRAINING MODE: DEVICE READY</strong> (Grey Background).</p>
+                    <Image src={offlinetotrain} className='col-8 offset-2 mb-3' alt='Offline Mode to Training Mode'/>
+                    <p>You will be given a gesture prompt below.  To train this gesture, press the button on the USB dongle, which will
+                    turn the gesture prompt green for 3 seconds. During this time, make the gesture as shown on the screen. Once completed, 
+                    a new gesture prompt will appear and you will need to repeat this process until the training session is finsihed.  
+                    </p>
+                     <Image src={trainingGreen} className='col-10 offset-1 mb-3' alt='Initiate a gesture'/> 
+                     <p><strong>To begin, press the button on the USB dongle to check for a connection between the device and the portal.  
+                     If there is no response, please restart the application. </strong></p>
+                    </div>
+                }
                 <div className={`next-letter col-6 offset-3 ${this.state.textColour}`}>{this.state.letter}</div>                            
             </div>
         )

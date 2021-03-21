@@ -27,27 +27,6 @@ import {updateTrainingSettings} from '../actions';
     }
 
     render() {
-        /*
-        if (this.props.userData.username === '') {
-            this.redirecttoLogin();
-            return (
-                <h4>
-                    Please Login First! Redirecting to Login Page...
-                    {this.state.redirectLogin && <Redirect to = '/login' />}
-                </h4>
-            )
-            
-        } else {
-            return (
-                <div>
-                    {this.props.trainingSettings.showTrainingSettings && <TrainingSettings/>}
-                    {this.props.trainingSettings.showTrainingMain && <TrainingMain/>}
-                    {this.props.trainingSettings.showTrainingFinished && <TrainingFinished/>}
-                </div>
-            
-            )
-        }
-        */
        return (
         <div>
             {this.props.trainingSettings.showTrainingChecklist && <TrainingChecklist/>}
