@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link, Redirect} from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import {connect} from 'react-redux';
 import {updateUserData} from '../actions';
 
@@ -26,6 +27,10 @@ import {updateUserData} from '../actions';
            .then(res => { 
                this.props.updateUserData(res.data.name, res.data.username, res.data.status); 
                if (res.data.username === undefined) {
+                <Alert>
+                        <Alert.Heading>Hello {this.props.userData.name}!</Alert.Heading>
+                        <p>Welcome to the flourish web portal.  Please select the training tab to start today's training session!</p>
+                </Alert>
                    alert('User not found.  Please check user info and try again or signup as a new user.')
                } else {
                 this.setState({redirectHome: true});

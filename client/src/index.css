@@ -149,19 +149,19 @@ h3 {
   }
 
   .dot-head {
-    top: 0%; left: 24%;  
+    top: 0%; left: 23%;  
 }
 
 .dot-trunk {
-    top: 25%; left: 24%;   
+    top: 25%; left: 23%;   
 }
 
 .dot-shoulder {
-    top: 17%; left: 16%;  
+    top: 17%; left: 15%;  
 }
 
 .dot-arm {
-    top: 35%; left: 38%;  
+    top: 34%; left: 37%;  
 }
 
 .dot-hand {
@@ -173,17 +173,35 @@ h3 {
 }
 
 .dot-leg {
-    top: 60%; left: 18%;  
+    top: 60%; left: 17.5%;  
 }
 
 .dot-foot {
-    top: 87%; left: 32%;  
+    top: 87%; left: 31%;  
 }
 
 .dot-computer {
-    height: 5rem;
-    width: 5rem;
-    top: 30%; left: 70%;
+    height: 5.5rem;
+    width: 5.5rem;
+    top: 5%; left: 64%;
+}
+
+.dot-computer {
+    height: 5.5rem;
+    width: 5.5rem;
+    top: 5%; left: 64%;
+}
+
+.dot-message {
+    height: 4.5rem;
+    width: 5.5rem;
+    top: 41%; left: 64%;
+}
+
+.dot-gaming {
+    height: 4.5rem;
+    width: 6.5rem;
+    top: 74%; left: 61%;
 }
 
 .person-container {
