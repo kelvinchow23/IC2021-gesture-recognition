@@ -275,6 +275,11 @@ void setup() {
 }
 
 void loop() {
+   if (digitalRead(btnPin) == LOW){    // Check for button press to switch states
+      joyState++;
+      sendJoystickState();    // Only communicate with other ESP32 device for training mode
+      delay(100);             // Debounce 
+    }
   // Attempt to read new data from the accelerometer
   bool got_data = ReadAccelerometer(error_reporter, model_input->data.f,
                                     input_length, should_clear_buffer);
@@ -282,14 +287,8 @@ void loop() {
   should_clear_buffer = false;
   // If there was no new data, wait until next time
   if (!got_data) return;
-
-   if (digitalRead(btnPin) == LOW){    // Check for button press to switch states
-      joyState++;
-      sendJoystickState();    // Only communicate with other ESP32 device for training mode   m
-      delay(100);             // Debounce 
-    }
      
-    char s[260];
+    char s[330];
     float *f = model_input->data.f;
     float *p = interpreter->output(0)->data.f;
 
@@ -303,13 +302,13 @@ void loop() {
     //sprintf(s, "%+6.0f : %+6.0f : %+6.0f || H %3.2f : E %3.2f : L %3.2f : O %3.2f : W %3.2f : R %3.2f : D %3.2f : U %3.2f : S %3.2f : N %3.2f",  \
               f[381], f[382], f[383], p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9]);
               
-    sprintf(s, "%+6.0f : %+6.0f : %+6.0f || A %3.2f : B %3.2f : C %3.2f : D %3.2f : E %3.2f : F %3.2f : G %3.2f : H %3.2f : I %3.2f : J %3.2f : K %3.2f : L %3.2f : M %3.2f : N %3.2f : O %3.2f : P %3.2f : Q %3.2f : R %3.2f : S %3.2f : T %3.2f : U %3.2f : V %3.2f : W %3.2f : X %3.2f : Y %3.2f : Z %3.2f",  \
-      f[381], f[382], f[383], p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18], p[19], p[20], p[21], p[22], p[23], p[24], p[25]);
+    sprintf(s, "%+6.0f : %+6.0f : %+6.0f || A %3.2f : B %3.2f : C %3.2f : D %3.2f : E %3.2f : F %3.2f : G %3.2f : H %3.2f : I %3.2f : J %3.2f : K %3.2f : L %3.2f : M %3.2f : O %3.2f : P %3.2f : Q %3.2f : R %3.2f : S %3.2f : T %3.2f : U %3.2f : V %3.2f : W %3.2f : X %3.2f : Y %3.2f : Z %3.2f : _ %3.2f : 0 %3.2f : 1 %3.2f : 2 %3.2f : 3 %3.2f : NEG %3.2f",  \
+      f[381], f[382], f[383], p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18], p[19], p[20], p[21], p[22], p[23], p[24], p[25], p[26], p[27], p[28], p[29], p[30]);
     error_reporter->Report(s);
     // Analyze the results to obtain a prediction
     int gesture_index = PredictGesture(interpreter->output(0)->data.f);
     // Clear the buffer next time we read data
-    should_clear_buffer = gesture_index < 36;
+    should_clear_buffer = gesture_index < 30;
     // Produce an output
     HandleOutputKeyboard(keyboard, error_reporter, gesture_index);
   

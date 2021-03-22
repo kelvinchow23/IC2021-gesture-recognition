@@ -56,6 +56,7 @@ import {updateTrainingSettings} from '../../actions';
                             <option  value='alphabet_26'>Alphabet (26)</option>
                             <option  value='alphabet+5_31'>Alphabet+5 (31)</option>
                             <option  value='gesture_4'>Gestures (4)</option>
+                            <option  value='extra_4'>Alphabet Modification (4)</option>
                             <option value='alphanumeric_36'>Alphanumeric (36)</option>
                             <option value='space_1'>Space (1)</option>
                             <option value='custom_10'>Custom</option>
@@ -69,6 +70,7 @@ import {updateTrainingSettings} from '../../actions';
                             <option value='5'>5</option>
                             <option value='7'>7</option>
                             <option value='10'>10</option>
+                            <option value='50'>50</option>
                         </select> 
                         <h5 className='col-2 text-center offset-1'>{this.state.time.toFixed(1)} min</h5>
                 </div> 

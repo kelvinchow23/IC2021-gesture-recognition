@@ -18,4 +18,4 @@ limitations under the License.
 // The number of expected consecutive inferences for each gesture type.
 // These defaults were established with the SparkFun Edge board.
 //const int kConsecutiveInferenceThresholds[9] = {10, 22, 14, 12, 12, 8, 8, 8, 10};
-const int kConsecutiveInferenceThresholds[36] = {10, 22, 14, 12, 12, 8, 8, 8, 10,10,10,10,10,10,10,10,10,10,10,10,10,10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10000, 10000, 10000, 1000, 1000};
+const int kConsecutiveInferenceThresholds[30] = {3, 3, 3, 3, 3, 3, 3, 3, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3};

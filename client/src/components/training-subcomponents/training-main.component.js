@@ -139,7 +139,10 @@ class TrainingMain extends Component {
         } else if (trainType === 'alphabet_26') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.repeat(trainNum).split('')
             .sort(function(){return 0.5-Math.random()});
-        }  else if (trainType === 'gesture_4') {
+        } else if (trainType === 'extra_4') {
+            arr = '4567'.repeat(trainNum).split('')
+            .sort(function(){return 0.5-Math.random()});
+        } else if (trainType === 'gesture_4') {
             arr = ['HI', ':)', 'FOOD', 'EW'];
         }  else if (trainType === 'alphabet+5_31') {
             arr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_0123'.repeat(trainNum).split('')
