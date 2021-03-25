@@ -41,9 +41,9 @@ static bool UpdateData() {
   float accZ = 0.000F;
   M5.IMU.getAccelData(&accX, &accY, &accZ);
 
-  save_data[begin_index++] = accX;
-  save_data[begin_index++] = accY;
-  save_data[begin_index++] = accZ;
+  save_data[begin_index++] = 1000*accX;
+  save_data[begin_index++] = 1000*accY;
+  save_data[begin_index++] = 1000*accZ;
 
   if (begin_index >= 600) {
     begin_index = 0;

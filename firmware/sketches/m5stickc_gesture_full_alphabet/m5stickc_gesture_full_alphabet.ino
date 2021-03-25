@@ -308,7 +308,7 @@ void loop() {
     // Analyze the results to obtain a prediction
     int gesture_index = PredictGesture(interpreter->output(0)->data.f);
     // Clear the buffer next time we read data
-    should_clear_buffer = gesture_index < 30;
+    should_clear_buffer = gesture_index < 31;
     // Produce an output
     HandleOutputKeyboard(keyboard, error_reporter, gesture_index);
   

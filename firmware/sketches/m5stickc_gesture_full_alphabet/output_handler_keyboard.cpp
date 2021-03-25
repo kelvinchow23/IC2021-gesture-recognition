@@ -21,80 +21,83 @@ limitations under the License.
 void HandleOutputKeyboard(BleComboKeyboard keyboard, tflite::ErrorReporter* error_reporter, int kind) {
   if (kind == 0) {
     error_reporter->Report("Type A:");
-    keyboard.print("A");
+    keyboard.print("A\n");
   } else if (kind == 1) {
     error_reporter->Report("Type B:");
-    keyboard.print("B");
+    keyboard.print("B\n");
   } else if (kind == 2) {
     error_reporter->Report("Type C:");
-    keyboard.print("C");
+    keyboard.print("C\n");
   } else if (kind == 3) {
     error_reporter->Report("Type D:");
-    keyboard.print("D");
+    keyboard.print("D\n");
   } else if (kind == 4) {
     error_reporter->Report("Type E:");
-    keyboard.print("E");
+    keyboard.print("E\n");
   }  else if (kind == 5) {
     error_reporter->Report("Type F:");
-    keyboard.print("F");
+    keyboard.print("F\n");
   }  else if (kind == 6) {
     error_reporter->Report("Type G:");
-    keyboard.print("G");
+    keyboard.print("G\n");
   }  else if (kind == 7) {
     error_reporter->Report("Type H:");
-    keyboard.print("H");
+    keyboard.print("H\n");
   }   else if (kind == 8) {
     error_reporter->Report("Type I:");
-    keyboard.print("I");
+    keyboard.print("I\n");
   }   else if (kind == 9) {
     error_reporter->Report("Type J:");
-    keyboard.print("J");
+    keyboard.print("J\n");
   }   else if (kind == 10) {
     error_reporter->Report("Type K:");
-    keyboard.print("K");
+    keyboard.print("K\n");
   }   else if (kind == 11) {
     error_reporter->Report("Type L:");
-    keyboard.print("L");
+    keyboard.print("L\n");
   }   else if (kind == 12) {
     error_reporter->Report("Type M:");
-    keyboard.print("M");
-  } else if (kind == 13) {
+    keyboard.print("M\n");
+  }   else if (kind == 13) {
+    error_reporter->Report("Type N:");
+    keyboard.print("N\n");
+  } else if (kind == 14) {
     error_reporter->Report("Type O:");
-    keyboard.print("O");
-  }   else if (kind == 14) {
-    error_reporter->Report("Type P:");
-    keyboard.print("P");
+    keyboard.print("O\n");
   }   else if (kind == 15) {
-    error_reporter->Report("Type Q:");
-    keyboard.print("Q");
+    error_reporter->Report("Type P:");
+    keyboard.print("P\n");
   }   else if (kind == 16) {
-    error_reporter->Report("Type R:");
-    keyboard.print("R");
+    error_reporter->Report("Type Q:");
+    keyboard.print("Q\n");
   }   else if (kind == 17) {
-    error_reporter->Report("Type S:");
-    keyboard.print("S");
+    error_reporter->Report("Type R:");
+    keyboard.print("R\n");
   }   else if (kind == 18) {
-    error_reporter->Report("Type T:");
-    keyboard.print("T");
+    error_reporter->Report("Type S:");
+    keyboard.print("S\n");
   }   else if (kind == 19) {
-    error_reporter->Report("Type U:");
-    keyboard.print("U");
+    error_reporter->Report("Type T:");
+    keyboard.print("T\n");
   }   else if (kind == 20) {
-    error_reporter->Report("Type V:");
-    keyboard.print("V");
+    error_reporter->Report("Type U:");
+    keyboard.print("U\n");
   }   else if (kind == 21) {
-    error_reporter->Report("Type W:");
-    keyboard.print("W");
+    error_reporter->Report("Type V:");
+    keyboard.print("V\n");
   }   else if (kind == 22) {
-    error_reporter->Report("Type X:");
-    keyboard.print("X");
+    error_reporter->Report("Type W:");
+    keyboard.print("W\n");
   }   else if (kind == 23) {
-    error_reporter->Report("Type Y:");
-    keyboard.print("Y");
+    error_reporter->Report("Type X:");
+    keyboard.print("X\n");
   }   else if (kind == 24) {
+    error_reporter->Report("Type Y:");
+    keyboard.print("Y\n");
+  }   else if (kind == 25) {
     error_reporter->Report("Type Z:");
-    keyboard.print("Z");
-  }else if (kind == 25) {
+    keyboard.print("Z\n");
+  }else if (kind == 26) {
     error_reporter->Report("Type WAVE:");
     keyboard.print("Hello! ");
     delay(70);
@@ -103,10 +106,10 @@ void HandleOutputKeyboard(BleComboKeyboard keyboard, tflite::ErrorReporter* erro
     keyboard.print("me is ");
     delay(70);
     keyboard.print("Kelvin\n");
-  }   else if (kind == 26) {
+  }   else if (kind == 27) {
     error_reporter->Report("Type HAPPY:");
     keyboard.print(":) \n");
-  }   else if (kind == 27) {
+  }   else if (kind == 28) {
     error_reporter->Report("Type BURRITO:");
     keyboard.print("Can I ");
     delay(70);
@@ -118,7 +121,7 @@ void HandleOutputKeyboard(BleComboKeyboard keyboard, tflite::ErrorReporter* erro
     delay(70);
     keyboard.print("ase?\n");
 
-  }   else if (kind == 28) {
+  }   else if (kind == 29) {
     error_reporter->Report("Type CILANTRO:");
     keyboard.print("Hold the");
     delay(70);
@@ -126,7 +129,7 @@ void HandleOutputKeyboard(BleComboKeyboard keyboard, tflite::ErrorReporter* erro
     delay(70);
     keyboard.print("antro\n");
     delay(70);
-  }   else if (kind == 29) {
+  }   else if (kind == 30) {
     error_reporter->Report("Type SPACE");
     keyboard.print(" ");
   }   

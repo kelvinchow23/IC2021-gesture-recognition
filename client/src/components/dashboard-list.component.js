@@ -71,7 +71,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='right' overlay={
                                                                   <Popover id='popover-trunk'>
                                                                   <Popover.Title as ='h3'>Trunk</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible</Popover.Content>
+                                                                    <Popover.Content>...</Popover.Content>
                                                                   </Popover>}
                                 >
                                     <div className='dot dot-trunk'>⦿</div>
@@ -79,7 +79,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='right' overlay={
                                                                   <Popover id='popover-shoulder'>
                                                                   <Popover.Title as ='h3'>Shoulder</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible</Popover.Content>
+                                                                    <Popover.Content>...</Popover.Content>
                                                                   </Popover>}
                                 >
                                     <div className='dot dot-shoulder'>⦿</div>
@@ -87,7 +87,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='right' overlay={
                                                                   <Popover id='popover-arm'>
                                                                   <Popover.Title as ='h3'>Arm</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible</Popover.Content>
+                                                                    <Popover.Content>Best choice, most functionality.</Popover.Content>
                                                                   </Popover>}
                                 >
                                     <div className='dot dot-arm'>⦿</div>
@@ -95,7 +95,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='right' overlay={
                                                                   <Popover id='popover-hand'>
                                                                   <Popover.Title as ='h3'>Hand</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible</Popover.Content>
+                                                                    <Popover.Content>Good choice.</Popover.Content>
                                                                   </Popover>}
                                 >
                                     <div className='dot dot-hand'>⦿</div>
@@ -103,7 +103,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='right' overlay={
                                                                   <Popover id='popover-hip'>
                                                                   <Popover.Title as ='h3'>Hip</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible</Popover.Content>
+                                                                    <Popover.Content>...</Popover.Content>
                                                                   </Popover>}
                                 >
                                     <div className='dot dot-hip'>⦿</div>
@@ -111,7 +111,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='right' overlay={
                                                                   <Popover id='popover-leg'>
                                                                   <Popover.Title as ='h3'>Leg</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible</Popover.Content>
+                                                                    <Popover.Content>...</Popover.Content>
                                                                   </Popover>}
                                 >
                                     <div className='dot dot-leg'>⦿</div>
@@ -119,7 +119,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='right' overlay={
                                                                   <Popover id='popover-foot'>
                                                                   <Popover.Title as ='h3'>Foot</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible</Popover.Content>
+                                                                    <Popover.Content>...</Popover.Content>
                                                                   </Popover>}
                                 >
                                     <div className='dot dot-foot'>⦿</div>
@@ -127,7 +127,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='left' overlay={
                                                                   <Popover id='popover-computer'>
                                                                   <Popover.Title as ='h3'>Smart Electronics</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible</Popover.Content>
+                                                                    <Popover.Content>...</Popover.Content>
                                                                   </Popover>}
                                 >                                    
                                 <div className='dot dot-computer'></div>
@@ -135,7 +135,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='left' overlay={
                                                                   <Popover id='popover-message'>
                                                                   <Popover.Title as ='h3'>Messaging and Communication</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible</Popover.Content>
+                                                                    <Popover.Content>...</Popover.Content>
                                                                   </Popover>}
                                 >                                    
                                 <div className='dot dot-message'></div>
@@ -143,7 +143,7 @@ import Popover from 'react-bootstrap/Popover';
                                 <OverlayTrigger placement='left' overlay={
                                                                   <Popover id='popover-gaming'>
                                                                   <Popover.Title as ='h3'>Gaming and Rehabilitation</Popover.Title>
-                                                                    <Popover.Content>limited functionality very visible blah blah blah blah</Popover.Content>
+                                                                    <Popover.Content>...</Popover.Content>
                                                                   </Popover>}
                                 >                                    
                                 <div className='dot dot-gaming'></div>

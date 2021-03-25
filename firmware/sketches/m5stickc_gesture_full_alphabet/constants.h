@@ -20,5 +20,5 @@ limitations under the License.
 const float kTargetHz = 25;    //NOT USED
 
 // The number of expected consecutive inferences for each gesture type
-extern const int kConsecutiveInferenceThresholds[30];
+extern const int kConsecutiveInferenceThresholds[31];
 #endif  // TENSORFLOW_LITE_EXPERIMENTAL_MICRO_EXAMPLES_MAGIC_WAND_CONSTANTS_H_

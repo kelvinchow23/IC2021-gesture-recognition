@@ -17,7 +17,7 @@ limitations under the License.
 
 #include "constants.h"
 
-const int MY_NUM_OUTPUTS = 30;
+const int MY_NUM_OUTPUTS = 31;
 
 // How many times the most recent gesture has been matched in a row
 int continuous_count = 0;
@@ -30,7 +30,7 @@ int PredictGesture(float* output) {
   // Find whichever output has a probability > 0.8 (they sum to 1)
   int this_predict = -1;
   for (int i = 0; i < MY_NUM_OUTPUTS; i++) {
-    if (output[i] > 0.8) this_predict = i;
+    if (output[i] > 0.7) this_predict = i;
   }
   // No gesture was detected above the threshold
   if (this_predict == -1) {

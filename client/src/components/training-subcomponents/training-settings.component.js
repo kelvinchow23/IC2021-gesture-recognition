@@ -55,7 +55,7 @@ import {updateTrainingSettings} from '../../actions';
                             <option  value='hello-world_9'>Hello World (9)</option>
                             <option  value='alphabet_26'>Alphabet (26)</option>
                             <option  value='alphabet+5_31'>Alphabet+5 (31)</option>
-                            <option  value='gesture_4'>Gestures (4)</option>
+                            <option  value='two-gestures_2'>Two Gestures (2)</option>
                             <option  value='extra_4'>Alphabet Modification (4)</option>
                             <option value='alphanumeric_36'>Alphanumeric (36)</option>
                             <option value='space_1'>Space (1)</option>
